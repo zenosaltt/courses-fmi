@@ -1,0 +1,38 @@
+% language
+\usepackage[english, italian]{babel}
+\addto\captionsitalian{\renewcommand\chaptername{}}
+
+% index setup
+\usepackage[hidelinks]{hyperref} % link di pagina e reference
+
+% figures setup
+\usepackage{graphicx, float}
+\usepackage[font = small, labelfont = bf]{caption} % small font for caption (and bold Figure word)
+
+% footnotes setup
+\usepackage[bottom]{footmisc} % note appiccicate al fondo della pagina
+\usepackage{footnotehyper}
+\makesavenoteenv{tcolorbox} % note delle box appiccicate al fondo, fuori dalle box
+
+% maths stuff
+\usepackage{amsmath, amsfonts, amssymb, amsthm}
+\theoremstyle{remark}
+\newtheorem*{osservaz}{Osservazione}
+
+% colors
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor} %testo colorato
+
+% others
+\usepackage[shortlabels]{enumitem} % elenco con numeri romani
+
+\newcommand{\cvd}{\begin{flushright}$\square$\end{flushright}} %cvd
+\newcommand{\Mod}[1]{\ (\mathrm{mod}\ #1)} %mod equivalence
+\newcommand{\head}[1]{\textnormal{\textbf{#1}}} % table heading
+
+% CHAPTER FORMAT
+\usepackage{titlesec}
+\titleformat{\chapter}[display] %hang = numero sulla stessa linea del titolo
+{\normalfont\huge\bfseries}{\chaptertitlename\thechapter}{20pt}{\LARGE}   
+\titlespacing*{\chapter}{0pt}{-50pt}{5pt} % left space, upper space, bottom space
+\newcommand{\chptr}[1]{\chapter{\textit{#1}}\noindent\rule{\textwidth}{1pt}}
