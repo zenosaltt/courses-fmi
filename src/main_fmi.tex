@@ -875,6 +875,64 @@ rappresenta il numero naturale preso in esame data una certa base.
 
 
 \section{Proprietà della divisibilità in $\mathbb{Z}$}
+Finora abbiamo incontrato la nozione di \textit{divisione}
+attraverso quella euclidea, che tuttavia può dare origine
+al cosiddetto resto $r$. Un caso interessante di questo
+tipo di divisione è proprio quello in cui risulta $r = 0$:
+intuitivamente, qualora il divisore ``ci sta esattamente un certo numero
+(intero) di volte'' nel dividendo. Questo è il concetto di
+\textit{divisibilità} in $\mathbb{Z}$, di cui introduciamo ora la definizione
+formale.
+
+\begin{tcolorbox}[colback=yellow!30, colframe=yellow!30!black, title=Divisibilità]
+Dati $n,m \in \mathbb{Z}$ si dice che $n$ è un divisore di
+$m$ (o che $m$ è un multiplo di $n$) se esiste un $k \in \mathbb{Z}$
+tale che $m = kn$:
+\[ n|m \quad \Longleftrightarrow \quad \exists k \in \mathbb{Z}: m = kn\]
+\end{tcolorbox}
+
+\begin{osservaz}
+Dalla definizione valgono le seguenti:
+\begin{enumerate}
+    \item $n|0 \quad \forall n \in \mathbb{Z}$
+    \item $n \not = 0 \Longrightarrow 0 \not | n$
+    \item $0|0$
+    \item $\pm 1 | n$, $\pm n|n \qquad \forall n \in \mathbb{Z}$
+\end{enumerate}
+\end{osservaz}
+
+\begin{tcolorbox}[title={Proprietà della divisibilità}]
+Dati $n,m\in\mathbb{Z}$ valgono
+\begin{enumerate}
+    \item $n|m$, $m|q \Longrightarrow n|q$
+    \item $n|m$, $m|n \Longrightarrow n = \pm m$
+\end{enumerate}
+\textit{\textbf{Dimostrazione:}}
+\begin{enumerate}
+    \item $n|m \Rightarrow m = kn$, $m|q \Rightarrow q = hm = (hk)n \Longrightarrow n|q$
+    \item $n|m \Rightarrow m = kn$, $m|n \Rightarrow n = hm \Longrightarrow m = khm \Longleftrightarrow m(1-kh) = 0 \quad \therefore \quad$ $m = 0, n = 0 \because n = hm$ oppure
+    $1 - kh = 0 \Longrightarrow h = k = \pm 1 \therefore n = \pm m$
+\end{enumerate}
+\cvd
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=violet!30, colframe=violet!30!black, title={Lemma utile}]
+Siano $c,n,m\in\mathbb{Z}:c|n,c|m$. Allora $c$ divide ogni combinazione lineare
+in $\mathbb{Z}$ tra $n$ e $m$:
+\[ c|xn+ym \quad \forall x,y\in\mathbb{Z} \]
+\textit{\textbf{Dimostrazione:}}
+
+\begin{align*}
+    c|n,c|m \Rightarrow&\\
+    \Rightarrow &\exists h,k\in\mathbb{Z}:n=ch,m=ck \Rightarrow\\
+    \Rightarrow &xn+ym=xch+yck=c(xh+yk) \Rightarrow\\
+    \Rightarrow &c|xn+ym
+\end{align*}
+
+\cvd
+\end{tcolorbox}
+
+
 \section{\underline{Definizione, esistenza e unicità del MCD}}
 \section{Algoritmo di Euclide per il calcolo del MCD}
 \section{Numeri coprimi e primi}
