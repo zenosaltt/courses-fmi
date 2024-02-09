@@ -1,0 +1,292 @@
+\chptr{$\mathbb{Z}$ e la Divisione}
+
+\section{Qualche parola sui numeri interi}
+L'insieme dei numeri interi si denota col simbolo $\mathbb{Z}$
+(dal tedesco \textit{Zahl}). Non verrà qui trattata nel dettaglio
+la sua struttura, al contrario dei naturali, ma ci limitiamo a
+dire che gli interi e le loro operazioni sono definibili per
+estensione dai naturali.
+
+\section{\underline{La divisione euclidea}}
+\begin{tcolorbox}[enhanced, breakable, title={Teorema della divisione euclidea}]
+\[
+    n,m \in \mathbb{Z}: m\not=0 \quad \Longrightarrow \quad \exists! q,r\in \mathbb{Z}:
+    \begin{cases}
+        n = qm + r\\
+        0 \leq r < |m|
+    \end{cases}
+\]
+\emph{\textbf{Dimostrazione:}} \underbar{\emph{Esistenza:}} procediamo
+per casi. Si consideri dapprima $n,m \in \mathbb{N}$ ($n \geq 0, m > 0$)
+e si proceda per induzione, seconda forma, su $n\in\mathbb{N}$.
+
+Se $n = 0$ (base dell'induzione) è sufficiente prendere $q = 0 = r$. Il
+sistema della tesi è infatti soddisfatto.
+
+Si supponga ora che $n > 0$ e che la tesi sia vera $\forall k < n$.
+Se $n < m$ basta prendere $q = 0$ e $r = n$ (anche qui le condizioni
+del sistema sono soddisfatte). Altrimenti si ponga $k = n - m$, dato
+che $m > 0$ e pertanto si ha $0 \leq k < n$,
+quindi per ipotesi induttiva $\exists q,r \in \mathbb{Z}$ tali che:
+\[ 
+    \begin{cases}
+        k = qm + r\\
+        0 \leq r < m = |m|
+    \end{cases}
+\]
+Ma allora $n = k + m = qm + r + m = (q+1)m + r$ e il passo induttivo
+è verificato.
+
+Si consideri ora il caso $n < 0$ e $m > 0$. Allora $-n > 0$ e quindi
+per il caso precedente esistono $q,r \in \mathbb{Z}$ tali che
+$-n = qm + r$ e $0 \leq r < m = |m|$. Per ricondurci alla forma della
+tesi, si pone $n = (-q)m - r$. Per sistemare $r$, nel caso $r = 0$ si
+soddisfano le condizioni per raggiungere la tesi, se $0 < r < m$ allora
+$0 < m - r < m = |m|$ ($m - r$ è pertanto il resto cercato) e:
+\[ n = (-q)m - r = (-q)m - m + m - r = (-q - 1)m + (m - r) \]
+Infine, se $m < 0$ allora $-m > 0$, quindi per i due casi precedenti
+$\exists q,r \in \mathbb{Z}$ tali che:
+\[ n = q(-m) + r = (-q)m + r \qquad \text{con } 0 \leq r < -m = |m| \]
+\underbar{\emph{Unicità:}} supponiamo che
+$qm + r = n = q'm + r'$ e che, a meno di scambiare $r$ e $r'$, $0 \leq r,r' < |m|$.
+Supponiamo che $r' \geq r$, allora:
+\[ qm + r = q'm + r' \Longleftrightarrow (q - q')m = r'-r \]
+\[ \therefore \]
+\[ |q-q'||m| = |r'-r| = r'-r < |m| \Longleftrightarrow 0 \leq |q-q'| < 1 \]
+Ma dal momento che $q,q' \in \mathbb{Z}$:
+\[
+    |q-q'| = 0 \Longleftrightarrow q = q' \quad \Longrightarrow \quad qm + r = q'm + r' \Longrightarrow r = r'
+\]
+
+\cvd
+\end{tcolorbox}
+
+La dimostrazione del teorema costituisce il procedimento alla base
+dell'algoritmo ricorsivo per il calcolo del quoziente e del resto
+della divisione intera.
+\begin{tcolorbox}[enhanced, breakable, colback=red!30, colframe=red!30!black, title=Algoritmo di divisione euclidea]
+
+\end{tcolorbox}
+
+\section{\underline{Rappresentazione dei naturali in base} $b$}
+\begin{tcolorbox}[colback=yellow!30, colframe=yellow!30!black, title=Rappresentabilità dei naturali in base arbitraria]
+Sia $b\in\mathbb{N}$. Diremo che $n\in\mathbb{N}$ è rappresentabile in base $b$ se
+esistono $\varepsilon_0,...,\varepsilon_k\in I_b=\{0,...,b-1\}$ tali che:
+\[ n=\varepsilon_0b^0+...+\varepsilon_k b^k = \sum_{i=0}^{k}\varepsilon_ib^i \]
+\end{tcolorbox}
+
+\begin{osservaz}
+È importante notare che nessun numero è rappresentabile in base 0, perché
+$I_0 = \varnothing$ e dunque non esistono simboli che possono rappresentare
+i numeri. L'unico naturale rappresentabile in base 1 è 0.
+\end{osservaz}
+
+La rappresentabilità è esprimibile in maniera alternativa, come si vede dall'enunciato
+del seguente teorema:
+
+\begin{tcolorbox}[enhanced, breakable, title={Teorema di rappresentazione dei naturali in base arbitraria}]
+Sia $b \in \mathbb{N}:b \geq 2$. Allora ogni
+$n \in \mathbb{N}$ è rappresentabile univocamente nella base $b$.
+Ossia esiste una successione $\{\varepsilon_i\}_{i \in \mathbb{N}}$:
+\begin{enumerate}
+    \item definitivamente nulla ($\exists i_0 \in \mathbb{N}: \varepsilon_i = 0 \quad \forall i > i_0$)
+    \item $\varepsilon_i \in I_b \quad \forall i \in \mathbb{N}$ ($0 \leq \varepsilon_i < b$, di tipo resto)
+    \item $n = \sum_{i = 0}^{\infty} \varepsilon_i b^i$ (per la (1) tale serie è finita)
+\end{enumerate}
+e se $\{\varepsilon'_i\}_{i \in \mathbb{N}}$ è un'altra
+successione che soddisfa gli stessi punti, allora $\varepsilon_i =
+\varepsilon'_i \quad \forall i \in \mathbb{N}$.
+$\\\\$
+\emph{\textbf{Dimostrazione:}} Sia fissato $b\in\mathbb{N}:b\geq2$.
+
+\underbar{\emph{Esistenza:}} Si procede per induzione, seconda forma, su $n \in \mathbb{N}$.
+
+Se $n = 0$ basta scegliere una successione tale che $\varepsilon_i = 0 \quad \forall i \in \mathbb{N}$.
+
+Assumiamo ora $n > 0$ e si supponga che la tesi sia vera $\forall k < n$.
+Si consideri la divisione euclidea tra $n,b$: siano $q,r$ tali che $n = qb + r$
+con $0 \leq r < b$. Essendo inoltre $b \geq 2$ vale: $0 \leq q < qb \leq qb + r = n$
+e quindi, per ipotesi di induzione, eiste una successione definitivamente
+nulla $\{\delta_i\}$ costituita di interi tali che
+$0 \leq \delta_i < b \quad \forall i$
+e tale che $q = \sum_{i=0}^{\infty}\delta_i b^i$. Segue che:
+
+\[ n = qb + r = \left(\sum_{i=0}^{\infty}\delta_i b^i\right)b + r = \sum_{i=0}^{\infty}\delta_i b^{i+1} + r = \sum_{j=1}^{\infty} \delta_{j-1}b^j + \varepsilon_0 = \sum_{i=0}^{\infty}\varepsilon_i b^i \]
+
+(Si noti che si è posto $\varepsilon_0 = \varepsilon_0 b^0 = r$ e
+$\varepsilon_i = \delta_{j-1} \quad \forall i,j > 0$).
+La successione $\{\varepsilon_i\}$ è definitivamente nulla, essendo
+tale $\{\delta_i\}$ e inoltre $0 \leq \varepsilon_i = \delta_{j-1} < b
+\quad \forall i,j > 0$ e $0 \leq \varepsilon_0 = r < b$.
+$\newline$
+\underbar{\emph{Unicità:}} Si procede per induzione su $n \in \mathbb{N}$.
+
+Se $n = 0 = \sum_{i} \varepsilon_i b^i$ allora ogni addendo della somma,
+essendo non negativo ($b \geq 2, \varepsilon_i \in I_b \quad \forall i$), necessariamente deve essere nullo, pertando si
+ha $\varepsilon_i = 0 \quad \forall i$.
+
+Si assuma ora $n > 0$ e si suppanga che, $\forall k < n$, l'espressione
+in base $b$ sia unica. Sia $n$ tale che:
+\[
+    n = \sum_{i=0}^{\infty}\varepsilon_i b^i = \sum_{i=0}^{\infty}\varepsilon'_i b^i \Longrightarrow
+    n = \left(\sum_{i=1}^{\infty}\varepsilon_i b^{i-1}\right)b + \varepsilon_0 = \left(\sum_{i=1}^{\infty}\varepsilon'_i b^{i-1}\right)b + \varepsilon'_0
+\]
+Per l'unicità della divisione euclidea, si ha che $\varepsilon_0 = \varepsilon'_0$
+e $\sum_{i=1}^{\infty}\varepsilon_i b^{i-1} = q = \sum_{i=1}^{\infty}\varepsilon'_i b^{i-1}$.
+Vale $q < n$ (si veda l'esistenza) e pertanto, per ipotesi di induzione,
+$\varepsilon_i = \varepsilon'_i \quad \forall i \geq 1$.
+\cvd
+\end{tcolorbox}
+In informatica si incontrano spesso numeri rappresentati in basi
+diverse da quella decimale, in modo particolare binaria, ottale
+ed esadecimale. Tutto questo è possibile perché il teorema precedente
+lo garantisce, sia nella capacità di rappresentare i numeri che
+nell'unicità di tali rappresentazioni.
+
+Come per la divisione euclidea, la dimostrazione di questo teorema
+mostra un procedimento ricorsivo per il calcolo della stringa che
+rappresenta il numero naturale preso in esame data una certa base.
+
+\begin{tcolorbox}[enhanced, breakable, colback=red!30, colframe=red!30!black, title = {Algoritmo di conversione tra rappresentabilità dei naturali in basi diverse}]
+
+\end{tcolorbox}
+
+
+\section{Proprietà della divisibilità in $\mathbb{Z}$}
+Finora abbiamo incontrato la nozione di \textit{divisione}
+attraverso quella euclidea, che tuttavia può dare origine
+al cosiddetto resto $r$. Un caso interessante di questo
+tipo di divisione è proprio quello in cui risulta $r = 0$:
+intuitivamente, qualora il divisore ``ci sta esattamente un certo numero
+(intero) di volte'' nel dividendo. Questo è il concetto di
+\textit{divisibilità} in $\mathbb{Z}$, di cui introduciamo ora la definizione
+formale.
+
+\begin{tcolorbox}[colback=yellow!30, colframe=yellow!30!black, title=Divisibilità]
+Dati $n,m \in \mathbb{Z}$ si dice che $n$ è un divisore di
+$m$ (o che $m$ è un multiplo di $n$) se esiste un $k \in \mathbb{Z}$
+tale che $m = kn$:
+\[ n|m \quad \Longleftrightarrow \quad \exists k \in \mathbb{Z}: m = kn\]
+\end{tcolorbox}
+
+\begin{osservaz}
+Dalla definizione valgono le seguenti:
+\begin{enumerate}
+    \item $n|0 \quad \forall n \in \mathbb{Z}$
+    \item $n \not = 0 \Longrightarrow 0 \not | n$
+    \item $0|0$
+    \item $\pm 1 | n$, $\pm n|n \qquad \forall n \in \mathbb{Z}$
+\end{enumerate}
+\end{osservaz}
+
+\begin{tcolorbox}[title={Proprietà della divisibilità}]
+Dati $n,m\in\mathbb{Z}$ valgono
+\begin{enumerate}
+    \item $n|m$, $m|q \Longrightarrow n|q$
+    \item $n|m$, $m|n \Longrightarrow n = \pm m$
+\end{enumerate}
+\textit{\textbf{Dimostrazione:}}
+\begin{enumerate}
+    \item $n|m \Rightarrow m = kn$, $m|q \Rightarrow q = hm = (hk)n \Longrightarrow n|q$
+    \item $n|m \Rightarrow m = kn$, $m|n \Rightarrow n = hm \Longrightarrow m = khm \Longleftrightarrow m(1-kh) = 0 \quad \therefore \quad$ $m = 0, n = 0 \because n = hm$ oppure
+    $1 - kh = 0 \Longrightarrow h = k = \pm 1 \therefore n = \pm m$
+\end{enumerate}
+\cvd
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=violet!30, colframe=violet!30!black, title={Lemma utile}]
+Siano $c,n,m\in\mathbb{Z}:c|n,c|m$. Allora $c$ divide ogni combinazione lineare
+in $\mathbb{Z}$ tra $n$ e $m$:
+\[ c|xn+ym \quad \forall x,y\in\mathbb{Z} \]
+\textit{\textbf{Dimostrazione:}}
+
+\begin{align*}
+    c|n,c|m \Rightarrow&\\
+    \Rightarrow &\exists h,k\in\mathbb{Z}:n=ch,m=ck \Rightarrow\\
+    \Rightarrow &xn+ym=xch+yck=c(xh+yk) \Rightarrow\\
+    \Rightarrow &c|xn+ym
+\end{align*}
+
+\cvd
+\end{tcolorbox}
+
+
+\section{\underline{Definizione, esistenza e unicità del MCD}}
+\section{Algoritmo di Euclide per il calcolo del MCD}
+\section{Numeri coprimi e primi}
+\section{\underline{Definizione, esistenza e unicità del mcm}}
+
+
+\section{\underline{Teorema fondamentale dell'aritmetica}}
+\begin{tcolorbox}[enhanced, breakable, title={Teorema Fondamentale dell'Aritmetica}]
+Ogni naturale $n \geq 2$ può essere fattorizzato in numeri primi (positivi),
+ovvero può essere scritto come prodotto di numeri primi eventualmente ripetuti:
+\[n = p_1p_2 \dots p_a  \quad (a \geq 1 \text{ e } p_i \text{ primo}) \]
+Inoltre questa scrittura è unica a meno di riordinamento, ovvero: se
+$n = q_1 \dots q_b$, dove $q_j$ con $1\leq j \leq b$ sono primi, allora esiste
+una bigezione $\varphi: \{1,...,a\} \to \{1,...,b\}$ tale che
+$q_j = p_{\varphi(j)}$.
+$\\\\$
+\emph{\textbf{Dimostrazione:}} \underbar{\emph{Esistenza:}} Si procede per induzione di seconda
+forma su $n \geq 2$, considerando la proposizione $P(n) = $ "il numero naturale $n$ si può scrivere
+$n = p_1...p_a$ per qualche $p_1,...,p_a$ primi eventualmente ripetuti".
+
+$n = 2$ (base): $n = 2$ è un numero primo, quindi $a = 1$, $p_1 = n = 2$, quindi
+$n = p_1 = 2$.
+
+$n > 2, \forall 2 \leq k < n \Rightarrow n$ (passo induttivo): sia $n > 2$.
+Assumiamo di saper scrivere ciascun $2\leq k < n$ come
+prodotto di numeri primi eventualmente ripetuti (ipotesi induttiva). Dobbiamo
+provare che anche $n$ ammette una tale fattorizzazione. Se $n$ è primo, allora
+$a = 1$ e $p_1 = n$, quindi $n = p_1$. Supponiamo che $n$ non sia primo, allora
+$n = d_1d_2$ con $2 \leq d_1,d_2 < n$, quindi per ipotesi induttiva $d_1 = p_1...p_a$
+e $d_2 = q_1...q_b$ ($a,b\geq1$ con $p_1,...,p_a,q_1,...,q_b$ numeri primi eventualmente
+ripetuti). Ma allora $n = d_1d_2 = p_1...p_aq_1...q_b$.
+
+\underbar{\emph{Unicità:}} Supponiamo che esista $n \geq 2$ con due fattorizzazioni:
+$n = p_1...p_a = q_1...q_b$ per qualche $p_1,...,p_a$, $q_1,...,q_b$ primi
+eventualmente ripetuti. Dobbiamo provare che $a=b$ e $p_i = q_i \quad \forall
+i \in \{1,...,a\}$ a meno di riordinamento. Osserviamo che $a \leq b$. Si
+procede per induzione (prima forma) su $a \geq 1$ considerando $P(a) =$ "per
+ogni $b \geq a$, per ogni $p_1,...,p_a,q_1,...,q_b$ primi tali che $p_1...p_a = q_1...q_b$;
+allora $a=b$ e, a meno di riordinamento, $p_i = q_i \quad \forall i \in \{1,...,a\}$".
+
+$a=1$ (base) Sia $b \geq 1$ e siano $p_1,q_1,...,q_b$ numeri primi tali che
+$p_1 = q_1...q_b$. Dobbiamo provare che $b=1$ e $p_1 = q_1$. Supponiamo per
+assurdo che $b \geq 2$. Vale: $p_1 = q_1(q_2...q_b)$, cioè $q_1|p_1$. Ma dal
+momento che essi sono numeri primi, deve essere $p_1 = q_1$,
+ma qindi $1 = q_2...q_b$, che è assurdo.
+
+$a \geq 1, a \Rightarrow a+1$ (passo induttivo) Supponiamo che vengano dati $p_1,...,p_a,
+q_1,...,q_b$ numeri primi con $b \geq a$ e $p_1...p_a = q_1...q_b$. Allora
+assumiamo che $a=b$ e, a meno di riordinamento, $p_i = q_i \quad \forall i \in \{1,...,a\}$
+(ipotesi induttiva). Dobbiamo dimostrare che: $P(a+1)= $"sia $b \geq a+1$ e siano
+$p_1,...,p_{a+1},q_1,...,q_b$ primi tali che $p_1...p_{a+1} = q_1...q_b$.
+Allora $b = a+1$ e $p_i = q_i \quad \forall i \in \{1,...,a+1\}$
+a meno di riordinamento". Vale: $p_{a+1}|p_1...p_{a+1} = q_1...q_b$, ma per
+l'esercizio 10.1 $\exists i \in \{1,...,b\}: p_{a+1}|q_i$. A meno di riordinare
+gli indici, supponiamo qui che $p_{a+1}|q_b$. Ma allora $p_{a+1} = q_b$ (ci si
+ritrova nella stessa situazione della base). Segue che:
+\[ p_1...p_ap_{a+1} = q_1...q_{b-1}q_b \quad \Rightarrow \quad  p_1...p_a = q_1...q_{b-1} \]
+Ma $a \leq b-1 \Leftrightarrow a+1 \leq b$: per ipotesi induttiva $a = b-1$ e,
+a meno di riordinamento, $p_i = q_i \quad \forall i \in \{1,...,a\}$. Pertanto
+$a+1 = b$ e $p_i = q_i \quad \forall i \in \{1,...,a,a+1\}$.
+
+Verificato il passo induttivo, possiamo concludere che, grazie al principio di
+induzione di prima forma, la fattorizzazione è unica a meno di riordinamento
+$\forall n \geq 2$.
+\cvd
+\end{tcolorbox}
+
+\subsection*{Perché 1 non è primo?}
+Con molta probabilità, alcuni lettori si saranno posti suddetta domanda. Di fatto
+1 è divisibile solamente per sé stesso, dunque anche per 1, ma dalla definizione
+potrebbe non essere del tutto chiara la ragione per cui i numeri primi
+sono maggiori o uguali a 2. Ora che abbiamo illustrato il teorema fondamentale
+dell'aritmetica, possiamo rispondere mostrando la ragione matematicamente
+formale di questa scelta convenzionale: assumere 1 come numero primo violerebbe
+la condizione di unicità della fattorizzazione. Si veda infatti, nella dimostrazione,
+la base dell'induzione: non si arriverebbe
+all'assurdo se assumessimo $p_1,q_1,...,q_b$ primi incluso 1. Infatti, non ci
+sarebbe modo di dare prova che la fattorizzazione in $q_1,...,q_b$ contenga lo
+stesso numero di elementi dell'altra.

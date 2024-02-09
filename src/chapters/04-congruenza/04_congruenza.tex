@@ -1,0 +1,177 @@
+\chptr{Congruenza e Aritmetica Modulare}
+\section{Congruenza in modulo}
+\section{Quoziente insiemistico}
+\section{Classi di congruenza}
+\section{Struttura algebrica di $\mathbb{Z}/_{n\mathbb{Z}}$}
+
+\section{\underline{Teorema cinese del resto}}
+\begin{tcolorbox}[enhanced, breakable, title={Teolema cinese del lesto}]
+Siano $n,m>0$ e siano $a,b \in \mathbb{Z}$. Consideriamo il seguente problema:
+\[
+    \begin{cases}
+        x \in \mathbb{Z}\\
+        x \equiv a \Mod{n}\\
+        x \equiv b \Mod{m}
+    \end{cases}
+    \Longleftrightarrow
+    \begin{cases}
+        x \in \mathbb{Z}\\
+        [x]_n = [a]_n\\
+        [x]_m = [b]_m
+    \end{cases}
+\]
+Indichiamo con $S$ l'insieme delle soluzioni del precedente sistema di congruenze:
+$S:=\{ x \in \mathbb{Z}| x \equiv a \Mod{n}, x \equiv b \Mod{m} \}$.
+Allora il sistema è compatibile se e solo se $a \equiv b \Mod{(n,m)}$, ovvero:
+\[ S\not = \varnothing \Longleftrightarrow (n,m)|a-b \]
+Assumiamo che $S \not = \varnothing$ e sia $c\in S$. Allora:
+\begin{align*}
+    S &=[c]_{[n,m]} \subseteq \mathbb{Z}\\
+    &=\{ c+k[n,m] \in \mathbb{Z}| k \in \mathbb{Z} \}
+\end{align*}
+
+\emph{\textbf{Dimostrazione:}} \underline{\emph{Compatibilità:}} Assumiamo che
+$S \not = \varnothing \Rightarrow \exists c \in S$ ovvero:
+\[
+    \begin{cases}
+        c \equiv a \Mod{n}\\
+        c \equiv b \Mod{m}
+    \end{cases}
+    \Longleftrightarrow
+    \begin{cases}
+        c = a+kn\\
+        c = b+hm
+    \end{cases}
+\]
+per qualche $h,k \in \mathbb{Z}$. Vale: $ 0 = a+kn - b-hm \Leftrightarrow -kn+hm = a-b $.
+Ma dato che $(n,m)|n$ e $(n,m)|m$, per il lemma utile $(n,m)|-kn+hm = a-b$.
+
+Assumiamo ora che valga $(n,m)|a-b$. Vale, per qualche $k \in \mathbb{Z}$:
+\begin{align}
+    a-b = k(n,m)
+\end{align}
+Applichiamo l'algoritmo di euclide con sostituzione a ritroso ad $n$ e $m$, ottenendo la
+combinazione lineare:
+\begin{align}
+    (n,m) = xn+ym
+\end{align}
+per qualche $x,y \in \mathbb{Z}$. Grazie a (1) e (2) vale:
+\begin{align*}
+    &a-b=k(n,m)=k(xn+ym)=kxn+kym \Leftrightarrow\\
+    \Leftrightarrow &a+(-kx)n=b+(ky)m =: c \in S
+\end{align*}
+
+\underline{\emph{Soluzione:}} Sia $c \in S$ e proviamo che $S=[c]_{[n,m]} \subseteq \mathbb{Z}$.
+Mostriamo che $S \subseteq [c]_{[n,m]}$. Sia $c'\in S$. Vale:
+\[ c \in S \Longleftrightarrow
+    \begin{cases}
+        c \equiv a \Mod{n}\\
+        c \equiv b \Mod{m}
+    \end{cases}
+    \Longleftrightarrow
+    \begin{cases}
+        c = a+kn\\
+        c = b+hm
+    \end{cases}
+\]
+\[
+    c' \in S \Longleftrightarrow
+    \begin{cases}
+        c' \equiv a \Mod{n}\\
+        c' \equiv b \Mod{m}
+    \end{cases}
+    \Longleftrightarrow
+    \begin{cases}
+        c' = a+k'n\\
+        c' = b+h'm
+    \end{cases}
+\]
+per qualche $h,h',k,k' \in \mathbb{Z}$. Vale:
+\[ c'-c=k'n-kn=(k'-k)n \quad\text{ e }\quad c'-c=h'm-hm=(h'-h)m \]
+dunque
+\[ n|c'-c,m|c'-c \Longrightarrow [n,m]|c'-c \Longleftrightarrow c'\equiv c \Mod{[n,m]} \Longleftrightarrow c' \in [c]_{[n,m]} \]
+Mostriamo che $[c]_{[n,m]} \subseteq S$. Sia $c' \in [c]_{[n,m]}$, ovvero $c'=c+k[n,m]$ per qualche
+$k \in \mathbb{Z}$. Vale:
+\begin{align*}
+    [c']_n &=\\
+    &= [c+k[n,m]]_n =\\
+    &= [c]_n + [k[n,m]]_n =\\
+    &= [a]_n + [k]_n \cdot [[n,m]]_n =\\
+    &= [a+k\cdot 0]_n = [a]_n
+\end{align*}
+Lo stesso procedimento vale per $m$: $[c']_m = [b]_m$. Dunque $c'\in S$.
+Avendo mostrato che $S\subseteq[c]_{[n,m]}$ e $[c]_{[n,m]}\subseteq S$,
+allora $S = [c]_{[n,m]}\subseteq\mathbb{Z}$.
+\cvd
+\end{tcolorbox}
+
+\section{Invertibilità}
+\section{La funzione $\Phi$ di Eulero}
+\section{\underline{Teorema di Fermat-Eulero}}
+\section{\underline{RSA}}
+
+
+\section{Metodi di calcolo: orbita di una classe}
+Le proprietà dell'aritmetica modulare consentono di effettuare calcoli (in modulo)
+a mano nonostante ci si dovesse imbattere in numeri estremamente grandi.
+Anche se il calcolo manuale non riscuote molto successo al giorno d'oggi,
+esistono ancora alcuni sistemi, come le calcolatrici, che impiegano
+tecniche di aritmetica modulare per semplificare i calcoli e trattare
+numeri altrimenti enormi rispetto alla capacità di rappresentazione digitale
+del dispositivo.
+Tecniche di calcolo simili si fondano su alcuni principi esaminati in
+questa parte:
+\begin{itemize}
+\item equivalenza tra classi di resto;
+\item somma e prodotto tra classi di resto;
+\item teorema di Fermat-Eulero, insieme a generalizzazioni e corollari;
+\item orbita.
+\end{itemize}
+Supponiamo di voler calcolare il resto della divisione intera tra
+$4^{2465}$ e $3$. Calcolare esplicitamente il dividendo non sarebbe
+molto efficiente, ma, conoscendo ora l'aritmetica modulare, sappiamo
+che il problema è interpretabile come segue:
+\[ \text{si trovi il minimo } r\in\mathbb{Z},r\geq0: [r]_3 = [4^{2465}]_3 \]
+Dunque applichiamo le proprietà algebriche: $[4^{2465}]_3 = [4]^{2465}_3 = [1]_3^{2465} = [1^{2465}]_3 = [1]_3 \Rightarrow r = 1$.
+Supponiamo ora di voler identificare la cifra delle unità di $7^{222}$.
+Con un po' di ragionamento si imposta il problema come segue\footnote{In un naturale espresso in
+base decimale, la cifra delle unità corrisponde al resto della divisione tra il numero stesso e 10.}:
+\[ d\in\{0,...,9\}: 7^{222}\equiv d\Mod{10} \]
+Notiamo che 7 e 10 sono coprimi, quindi per il teorema di Fermat-Eulero
+$7^{\Phi(10)}\equiv 1 \Mod{10}$, dove $\Phi(10)=\Phi(2\cdot5)=4$. Ma
+allora $7^{222}\equiv 7^{4\cdot55+2} \equiv (7^4)^{55}\cdot7^2\equiv 1^{55}\cdot 49 \equiv 49\equiv 9 \Mod{10} \Rightarrow d=9$.
+
+Illustriamo il concetto di orbita di una classe di resto con la seguente tabella,
+prendendo l'esempio di $[8]_{77}$:
+\begin{center}
+\begin{tabular}{c|l}
+    \head{$k$} & \head{Rappresentante di $[8^k]_{77}$}\\
+    \hline
+    1        & $8$\\
+    2        & $64$\\
+    3        & $50$\\
+    4        & $15$\\
+    5        & $43$\\
+    6        & $36$\\
+    7        & $57$\\
+    8        & $71$\\
+    9        & $29$\\
+    10       & $1$\\
+    11       & $8$\\
+    12       & $64$\\
+    \dots    & \dots
+\end{tabular}
+\end{center}
+Notiamo che all'esponente 10 abbiamo ottenuto il rappresentante
+1. Per i principi dell'aritmetica modulare ciò accade sempre. Ma
+quello che è ancor più sorprendente è che questa successione è periodica
+(provate a proseguire con i calcoli con $k>10$): questa è l'orbita
+della classe $[8]_{77}$ elevata a potenze positive. La formulazione
+rigorosa di questa proprietà si collega al teorema di Carmichael.
+
+La tecnica dell'orbita permette, in alcuni casi, di velocizzare i calcoli in
+modulo in due modi: trovare rappresentanti canonici ridotti e agevoli
+da maneggiare o raggiungere la classe 1 senza ripiegare sul teorema
+di Fermat-Eulero. Questa tecnica può tornare utile in alcuni
+contesti (si vedano gli esercizi) ma non è sempre conveniente. Per esempio,
+l'orbita potrebbe essere più lunga di quello che si potrebbe pensare.

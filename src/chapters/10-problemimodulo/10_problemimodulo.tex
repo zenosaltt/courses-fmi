@@ -1,0 +1,140 @@
+\chptr{Problemi di Aritmetica Modulare}
+
+\section{Sistemi di congruenze semplici}
+Sistemi di questo genere richiedono l'applicazione del teorema cinese
+del resto, la cui dimostrazione fornisce il procedimento per raggiungere la
+soluzione. Pertanto i punti essenziali sono:
+\begin{enumerate}
+\item Identificare e dichiarare l'insieme delle soluzioni.
+\item Verificare la compatibilità.
+\item Calcolare una soluzione particolare.
+\item Costruire l'insieme delle soluzioni.
+\end{enumerate}
+
+\begin{tcolorbox}[enhanced, breakable, colback=blue!30, colframe=blue!30!black, title=Esempio]
+Si determinino tutte le soluzioni del seguente sistema di congruenze:
+\[
+\begin{cases}
+    x\equiv 100 &\Mod{150}\\
+    x\equiv 65  &\Mod{85}
+\end{cases}
+\]
+Si dica inoltre, motivando la risposta, se il precedente sistema una
+soluzione divisibile per 2551.
+$\\\\$
+\textit{Soluzione:} Sia $S\subset\mathbb{Z}$ l'insieme delle soluzioni del sistema di
+cui sopra e calcoliamolo. Verifichiamo anzitutto la compatibilità del
+sistema. Grazie al teorema cinese del resto vale la relazione
+$S\not=\varnothing \Longleftrightarrow (150,85)|100-65$. Calcoliamo
+dunque $(150,85)$ tramite fattorizzazione:
+\[ 150=2\cdot3\cdot5^2, 85=5\cdot17 \Longrightarrow (150,85)=5 | 100-65=35 \]
+Dunque, grazie al teorema cinese del resto, $S\not=\varnothing$. Inoltre
+vale: \[ \text{(1) } 100-65=7\cdot5=7(150,85) \]
+Calcoliamo una soluzione particolare $c\in S$. Lanciamo l'algoritmo di
+Euclide su 150 e 85:
+\begin{align*}
+150 &=85+65                & 5&=65-3\cdot20 =\\
+85  &=65+20                &  &=65-3\cdot(85-65)=4\cdot65-3\cdot85\\
+65  &=3\cdot20+\textbf{5}  &  &=4\cdot(150-85)-3\cdot85=4\cdot150-7\cdot85 \Rightarrow\\
+20  &=4\cdot5+0            &  &\Rightarrow (150,85)=4\cdot150-7\cdot85 \text{ (2)}
+\end{align*}
+
+Grazie alle uguaglianze (1) e (2) vale:
+\begin{align*}
+    100-65=7\cdot(150,85)&=28\cdot150-49\cdot85\\
+    &\Updownarrow\\
+    100-28\cdot150&=65-49\cdot85=-4100=:c\in S
+\end{align*}
+
+Grazie al teorema cinese del resto, l'insieme delle soluzioni può essere
+costruito come segue: \[ S=[-4100]_{[150,85]}\subseteq\mathbb{Z} \qquad\text{ dove }\qquad [150,85]=\frac{150\cdot85}{(150,85)}=2550\]
+Dunque:
+\[ S=[-4100+2\cdot2550]_{[150,85]}=[1000]_{[2550]}\subseteq\mathbb{Z} \]
+Alternativamente, $S=\{1000+2550k\in\mathbb{Z}|k\in\mathbb{Z}\}$.
+
+Per rispondere alla seconda domanda, si può procedere in più modi. Notiamo
+che la richiesta è equivalente a determinare se l'insieme delle soluzioni
+$F$ del seguente sistema di congruenze è non vuoto:
+\[
+\begin{cases}
+    x\equiv 1000 &\Mod{2550}\\
+    x\equiv 0    &\Mod{2551}
+\end{cases}
+\]
+Come prima applichiamo il teorema cinese del resto per verificare la
+compatibilità (non è necessario calcolare la soluzione). Osserviamo
+che $(2550,2551)=1$, perché 2551 è successivo a 2550. Verifichiamo:
+\[ (2550,2551)=1|1000-0=1000 \]
+Allora $F\not=\varnothing$ grazie al teorema cinese del
+retsto ed esistono soluzioni al primo sistema divisibili
+per 2551.
+\end{tcolorbox}
+
+
+\newpage
+\section{Congruenze con potenza e metodo RSA}
+Queste congruenze sono risolvibili in vari modi. Vedremo solo la soluzione
+mediante RSA, che tuttavia non risolve tutte le congruenze con potenza. Il
+procedimento generale per risolvere questi esercizi è il seguente:
+\begin{enumerate}
+\item Dichiarare l'insieme delle soluzioni.
+\item Verificare l'applicabilità del metodo RSA.
+\item Costruire l'insieme delle soluzioni.
+\item Calcolare l'esponente.
+\item Calcolare esplicitamente la soluzione, eventualmente ricorrendo
+al metodo dell'orbita.
+\end{enumerate}
+
+\begin{tcolorbox}[enhanced, breakable, colback=blue!30, colframe=blue!30!black, title=Esempio]
+Si determinino tutte le soluzioni della seguente congruenza e si calcoli la
+minima soluzione positiva:
+\[ x^7\equiv59 \Mod{62} \]
+\textit{Soluzione:} Sia $S\subseteq\mathbb{Z}$ l'insieme delle soluzioni della congruenza
+di cui sopra e calcoliamolo. Verifichiamo l'applicabilità del metodo
+RSA, ovvero controlliamo se valgono le seguenti uguaglianze:
+\begin{align*}
+(59,62)\stackrel{\text{?}}{=}1:      & \text{ osserviamo che 59 è primo
+                                        e } 59\not|62 \text{ dunque
+                                        } (59,62)=1.\\
+(7,\Phi(62))\stackrel{\text{?}}{=}1: & \text{ applicando la moltiplicatività
+                                        della Phi di Eulero: }\\
+                                    &\Phi(62)=\Phi(2\cdot31)=\Phi(2)\Phi(31)=(2-1)(31-1)=30\\
+                                    & \text{7 è primo e } 7\not|30 \text{ dunque } (7,\Phi(62))=1.
+\end{align*}
+Il metodo RSA è applicabile. La soluzione può allora essere costruita nel
+seguente modo:
+\[ S=[59^d]_{62}\subseteq\mathbb{Z} \quad d>0, d\in[7]^{-1}_{\Phi(62)} \]
+Calcoliamo $d$. Applichiamo l'algoritmo di Euclide a 7 e $\Phi(62)=30$:
+\begin{align*}
+30 &=4\cdot7+2                & 1&=7-3\cdot2 =\\
+7  &=3\cdot2+\textbf{1}       &  &=7-3\cdot(30-4\cdot7)=\\
+2  &=2\cdot1+0                &  &=13\cdot7-3\cdot30
+\end{align*}
+Vale:
+\begin{align*}
+    &1=13\cdot7+(-3)\cdot30 \Longrightarrow [1]_{30}=[13\cdot7]_{30}+[-3\cdot30]_{30} \Longrightarrow\\
+    &\Longrightarrow [1]_{30}=[13]_{30}[7]_{30} \Longrightarrow [7]^{-1}_{30}=[13]_{30}
+\end{align*}
+Dunque $d=13$. Calcoliamo esplicitamente la soluzione e, per semplificare i
+calcoli, studiamo l'orbita di $[59^k]_{62}, k\in\mathbb{N}\setminus\{0\}$.
+
+\begin{center}
+\begin{tabular}{c|l}
+    \head{k} & \head{Rappresentante di $[59^k]_{62}$}\\
+    \hline
+    1        & 59\\
+    2        & $59^2=3481=56\cdot62+9\equiv9 \Mod{62}$\\
+    3        & $59^3=59^2\cdot59\equiv9\cdot59\equiv 35\Mod{62}$\\
+    4        & $59^4=(59^2)^2\equiv9^2\equiv 19 \Mod{62}$\\
+    5        & $59^5=59^4\cdot59\equiv19\cdot59\equiv 5\Mod{62}$\\
+\end{tabular}
+\end{center}
+
+Osserviamo che $[59^5]_{62}=[5]_{62}, [59^3]_{62}=[35]_{62}$, dunque
+vale:
+\[ [59^{13}]_{62}=[59]^{2\cdot5+3}_{62}=[59^5]^2_{62}[59^3]_{62}=[5^2]_{62}[35]_{62}=[25\cdot35]_{62}=[7]_{62} \]
+E la soluzione è:
+\[ S=[7]_{62}\subseteq\mathbb{Z} \]
+e la minima soluzione positiva corrisponde al rappresentante di $[7]_{62}$
+ovvero 7.
+\end{tcolorbox}

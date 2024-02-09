@@ -1,0 +1,216 @@
+\chptr{Fondamenti di Insiemistica}
+
+\section{Assiomi}
+Ai fini del corso, mostriamo solo alcuni assiomi e concetti primitivi,
+appartenenti alla teoria degli insiemi, utili a comprendere ciò che
+verrà trattato in seguito.
+
+\begin{tcolorbox}[colback = yellow!30, colframe = yellow!30!black, title = {Elemento, insieme, appartenenza}]
+Intenderemo \textit{primitivi} i concetti seguenti:
+\begin{itemize}
+    \item \textbf{Elemento:} intuitivamente, un oggetto qualsiasi.
+    \item \textbf{Insieme:} intuitivamente, una collezione di elementi.
+\end{itemize}
+Un oggetto si può considerare un insieme se è sempre possibile stabilire
+\textit{senza ambiguità} se qualcosa è un suo elemento oppure no. Tale
+affermazione esprime la relaizone di \textbf{appartenenza} tra elemento e
+insieme:
+\[ A \text{ è un insieme } \Longleftrightarrow \forall x,x\in A \text{ o}\footnote{Disgiunzione esclusiva: solo una affermazione può e deve essere vera.}\text{ } x\not\in A \]
+\end{tcolorbox}
+
+\begin{osservaz}
+Un insieme può a sua volta essere un elemento.
+\end{osservaz}
+
+\subsection*{Appartenenza e paradosso di Russell}
+Anche se la richiesta espressa dalla condizioine di appartenenza può sembrare
+scontata, in realtà può essere fonte di problemi. Consideriamo l'oggetto
+\[ R = \{x|x\not\in x\} \]
+Per capire se $R$ è un insieme, è necessario passare in rassegna ogni oggetto
+$x$ e stabilire se esso appartiene o meno a $R$ (affinché $x\in R$, deve valere
+la condizione espressa $x\not\in x$). Quando si dice \textit{ogni oggetto} si
+intende anche $R$ stesso. Ecco cosa accade quando si tenta di stabilire se
+$R\in R$:
+\begin{itemize}
+\item Se $R\in R$, allora, per costruzione di $R$, deve essere $R\not\in R$.
+\item Se invece $R\not\in R$, vuol dire che $R$ non rispetta la condizione, pertanto $R\in R$.
+\end{itemize}
+Dunque si giunge a concludere che \[ R\in R \Longleftrightarrow R\not\in R \]
+che è un'evidente contraddizione. Quello che è stato appena illustrato è il \textit{paradosso
+di Russell}\footnote{Per una versione più divertente del paradosso, invitiamo il
+lettore a farsi raccontare la favola-paradosso del barbiere. Non ancora soddisfatti? Provate il paradosso del bibliotecario.}. Grazie agli assiomi precedenti, è allora garantito che $R$ non è
+un insieme. Un altro esempio di oggetto non classificabile come insieme,
+secondo le definizioni presentate finora, è l'\textit{insieme universo} $\mathcal{U}$,
+trattato più avanti.
+
+\begin{tcolorbox}[colback=yellow!30, colframe=yellow!30!black, title={Assioma di Estensionalità}]
+Due insiemi sono uguali se possiedono gli stessi elementi.
+\[ A = B \Longleftrightarrow (\forall x,x\in A \Leftrightarrow x \in B) \]
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=yellow!30, colframe=yellow!30!black, title=Esistenza dell'insieme vuoto]
+Esiste un insieme, chiamato insieme vuoto (indicato col simbolo $\varnothing$), che non possiede elementi.
+\[\exists \varnothing:\forall x, x\not\in\varnothing\]
+Tale insieme è unico (si dimostra attraverso l'Estensionalità).
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=yellow!30, colframe=yellow!30!black, title={Sottoinsiemi}]
+Siano $X,Y$ due insiemi. Si dice che $X$ è sottoinsieme di $Y$
+(equivalentemente si può dire \emph{è contenuto}), utilizzando il simbolo $\subseteq$,
+se ogni elemento di $X$ è elemento di $Y$.
+\[ X \subseteq Y \Longleftrightarrow \forall x(x\in X \Rightarrow x\in Y) \]
+\end{tcolorbox}
+
+\begin{osservaz}
+Esistono molti simboli per indicare i
+sottoinsiemi,: $\subset,\subseteq,\subseteqq$.
+Si presti bene attenzione a $\subset$: la letteratura
+accademica è piuttosto contraddittoria sul significato di tale
+simbolo e non è ben chiaro se esso possa essere utilizzato per
+indicare unicamente i sottoinsiemi \textbf{propri}, ovvero quelli
+che non possono coincidere col sovrainsieme. Per evitare
+ambiguità si utilizzano equivalentemente i simboli $\subsetneq,\subsetneqq$, poco usati
+qui.
+\end{osservaz}
+
+\section{Insiemi e proprietà: l'assioma di separazione}
+Un modo di definire alcuni insiemi è quello di impiegare una \textit{proprietà}
+che ne caratterizzi gli elementi. Una proprietà non è altro che una proposizione,
+cioè un'affermazione vera e propria, come
+\[ P(x) := \textit{ x è fan dei Caesars} \]
+Ovviamente a noi interesseranno affermazioni relative a oggetti matematici.
+In generale $P(x)$ può essere vera o falsa a seconda di $x$, ma asserzioni come
+\[ \forall x \quad x\in\varnothing\Longrightarrow P(x) \]
+sono sempre vere. Sembra assurdo, ma approfittiamo di questo esempio per
+spiegare che il simbolo $\Longrightarrow$ (\textit{se [ipotesi] allora [tesi]}) esprime, in matematica, \textit{l'implicazione logica materiale}.
+In altre parole, l'intera implicazione è vera se l'ipotesi è falsa oppure se
+è vera la tesi. \textit{Ex falso quodlibet}, dal falso segue ogni cosa. Nel
+nostro caso, la tesi $x\in\varnothing$ è sempre falsa, quindi possiamo
+supporre che tutti gli elementi dell'insieme vuoto sono fan dei Caesars.
+
+
+Se $P$ è una proposizione esprimibile
+in termini insiemistici, cioè attraverso gli opportuni simboli e connettori
+logici, allora scrivendo
+\[\{x|P(x)\}\]
+si intende la collezione di tutti gli $x$ che soddisfano $P$. Il paradosso
+di Russel in realtà è prova che, in generale, un tale oggetto non è
+sempre un insieme. Perciò occorre l'assioma della separazione, che tuttavia
+non permette di costruire tutti gli insiemi della teoria degli insiemi, i
+quali devono essere definiti con altri assiomi
+(tali insiemi esulano da questo corso).
+
+\begin{tcolorbox}[colback=yellow!30, colframe=yellow!30!black, title={Assioma della separazione}]
+Se $X$ è un insieme e $P$ una proprietà esprimibile come proposizione
+scritta in termini del linguaggio della teoria degli insiemi, allora
+la collezione
+\[ \{x|x\in X, P(x)\} \]
+è un insieme. Alternativamente, vale anche la notazione $\{x\in X|P(x)\}$.
+\end{tcolorbox}
+
+Possiamo ora spiegare perché non esiste $\mathcal{U}$, l'insieme di tutti
+gli insiemi. Supponiamo invece che $\mathcal{U}$ esista; allora possiamo
+scrivere
+\[ \{x|x\not\in x\} = \{x\in\mathcal{U}|x\not\in x\} \]
+Questo perché $x$, nel membro di sinistra, è anche un insieme; dal momento
+che $\mathcal{U}$ è un insieme di insiemi, allora $x\in\mathcal{U}$.
+Ma per il paradosso di Russell, il primo membro non può essere un insieme;
+quello di destra, per l'assioma di separazione, invece lo è, perché abbiamo
+supposto l'esistenza di $\mathcal{U}$\footnote{Il paradosso si supera
+introducendo la nozione di \textit{classe}, che tuttavia non vedremo qui.}.
+
+\section{Operazioni tra insiemi}
+Se $X$ e $Y$ sono insiemi, si possono ricavare altri insiemi, per mezzo
+dell'assioma della separazione, attraverso le seguenti operazioni:
+\begin{enumerate}
+\item \textbf{Intersezione:} $X\cap Y=\{x|x\in X, x\in Y\}$
+\item \textbf{Differenza:} $X\setminus Y=\{x|x\in X,x\not\in Y\}$
+\item \textbf{Unione:} $X\cup Y=\{x|x\in X \vee x\in Y\}$
+\item \textbf{Prodotto:} $X\times Y=\{(x,y)|x\in X, y\in Y\}$
+\item \textbf{Potenza:} $2^X=\{x|x\subseteq X\}$
+\end{enumerate}
+Se $I$ è un insieme e per ogni $i\in I$ è dato un insieme $X_i$
+(si dice che gli $X_i$ sono indicizzati su $I$, cioè $I$ serve
+solamente a \emph{numerare} o etichettare gli $X_i$), ridefiniamo
+unione e intersezione al caso generale di insiemi multipli:
+\begin{enumerate}
+\item \textbf{Intersezione:} $\bigcap_{i\in I}X_i=\{x|\forall i \quad x\in X_i\}$
+\item \textbf{Unione:} $\bigcup_{i\in I}X_i=\{x|\exists i:x\in X_i\}$
+\end{enumerate}
+A parole, l'intersezione include gli $x$ appartenenti \textit{ad ogni}
+$X_i$, mentre l'unione include gli $x$ contenuti in \textit{almeno un}
+$X_i$.
+
+
+\section{Relazioni e funzioni}
+\begin{tcolorbox}[colback=yellow!30, colframe=yellow!30!black, title={Relazione}]
+Siano $X,Y$ insiemi. Si dice relazione ($\mathcal{R}$) tra $X$ e $Y$ un sottoinsieme
+del prodotto tra $X$ e $Y$.
+\[\mathcal{R}\subseteq X\times Y\]
+Si scriverà anche $x\mathcal{R}y$ per indicare $(x,y)\in\mathcal{R},
+\quad x\in X,y\in Y$. Una relazione in $X\times X$, cioè tra $X$ e se stesso,
+si chiamerà \textit{relazione binaria} su $X$.
+\end{tcolorbox}
+
+Anche nella vita di tutti i giorni, si incontra spesso una classe di relazioni,
+dette \textit{relazioni di equivalenza}, che condividono tre proprietà semplici ma per
+nulla scontate.
+
+\begin{tcolorbox}[colback=yellow!30, colframe=yellow!30!black, title={Relazione di equivalenza}]
+Sia $X$ un insieme e sia $\mathcal{R}$ una relazione binaria su $X$
+(cioè $\mathcal{R} \subseteq X \times X$). Diciamo che $\mathcal{R}$ è una
+relazione di equivalenza su $X$ se possiede le seguenti proprietà:
+\begin{enumerate}
+    \item \textbf{Riflessiva:} $\forall x \in X, \quad x \mathcal{R} x$
+    \item \textbf{Simmetrica:} $\forall x,y \in X, \quad x \mathcal{R}y \Longrightarrow y \mathcal{R} x$
+    \item \textbf{Transitiva:} $\forall x,y,z \in X, \quad x \mathcal{R} y \text{ e } y \mathcal{R} z \Longrightarrow x \mathcal{R} z$
+\end{enumerate}
+\end{tcolorbox}
+La portata di questo genere di relazioni è ampia e copre non solo i linguaggi
+matematici, ma anche la logica quotidiana. Ad esempio, qualsiasi cosa è uguale
+a sé stessa; se la mia auto ha lo stesso colore della tua, allora la tua auto ha lo stesso
+colore della mia; se posso raggiungere Roma in skateboard partendo da Verona,
+e posso fare altrettanto da Roma a Foggia, posso viaggiare in skateboard da
+Verona a Foggia. In informatica si possono incontrare numerose relazioni di
+equivalenza. Generalmente nei corsi di teoria dei linguaggi di programmazione
+si tratta \textit{l'equivalenza di tipo}, che è una relazione di equivalenza.
+In Java esiste il metodo \texttt{equals} (si occupa del confronto tra oggetti
+appartenenti a classi date), la cui definizione deve mandatoriamente
+rispettare le proprietà delle relazioni di equivalenza. Tale obbligo spetta
+peraltro al programmatore, qualora si decida di effettuare \textit{override}
+del metodo.
+
+\begin{tcolorbox}[colback=yellow!30, colframe=yellow!30!black, title={Funzione}]
+Una relazione $f\subseteq X\times Y$ si dice \textit{funzione} (o funzione
+\textit{totale}) se per ogni $x\in X$ esiste unico $y\in Y$ per cui $xfy$.
+\[ f \text{ funzione} \Longleftrightarrow \forall x\in X,\exists!y\in Y:xfy \]
+Si scriverà anche $f:X\to Y$ per indicare che $f$ è una funzione (o applicazione)
+da $X$ in $Y$ e $y=f(x)$ come sinonimo di $(x,y)\in f$.
+\end{tcolorbox}
+
+L'insieme $\{x\in X|\exists y\in Y: y=f(x)\}$ prende il nome di \textit{dominio}
+di $f$ ($\text{dom}(f)$), mentre $\{y\in Y|\exists x\in\text{dom}(f):y=f(x)\}$
+è l'\textit{immagine} di $f$. In realtà, per la definizione appena data
+$\text{dom}(f)=X$, ma ciò è vero per le funzioni \textit{totali}. Esistono
+anche funzioni \textit{parziali}, nelle quali per ogni $x\in X$ esiste \textit{al più}
+un $y\in Y$ col quale $x$ è in relazione. Per noi saranno importanti le funzioni
+totali.
+
+Denotiamo con $Y^X$ l'insieme di tutte le funzioni totali da $X$ a $Y$, cioè
+\[ Y^X = \{f\in2^{X\times Y}| \forall x\in X, \exists!y\in Y: xfy\} \]
+Se $X$ è un insieme, $\text{id}_X = \{(x_1,x_2\in X\times X| x_1=x_2)\}$ è
+una funzione, chiamata \textit{identità} di $X$ e vale \[ \text{id}_X(x)=x \quad \forall x\in X\]
+Se $f:X\to Y$ è una funzione e $A\subseteq X$, allora $f\cap(A\times Y)$
+è ancora una funzione, chiamata \textit{restrizione di $f$ ad $A$} e indicata
+con $f|_A$. In altre parole, essa rappresenta una parte della funzione $f$,
+ristretta ad un sottoinsieme del suo dominio.
+
+\begin{tcolorbox}[colback=yellow!30, colframe=yellow!30!black, title={Composizione}]
+\end{tcolorbox}
+\begin{tcolorbox}[colback=yellow!30, colframe=yellow!30!black, title={Iniettività, surgettività, bigettività}]
+\end{tcolorbox}
+
+
+
+
+\section{Equipotenza di insiemi}

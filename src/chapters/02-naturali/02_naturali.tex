@@ -1,0 +1,411 @@
+\chptr{$\mathbb{N}$, Insiemi Ordinati e Insiemi Finiti}
+
+\section{L'insieme $\mathbb{N}$}
+Un insieme numerico fondamentale in matematica discreta—in
+particolar modo per questo corso—è quello dei numeri naturali,
+indicato con il simbolo $\mathbb{N}$. La sua struttura attuale
+è dovuta al matematico italiano Giuseppe Peano, che formalizzò
+la natura di tale insieme attraverso i suoi celebri assiomi.
+\begin{tcolorbox}[colback=yellow!30, colframe=yellow!30!black, title=Assiomi di Peano]
+\begin{enumerate}[(i)]
+    \item $\mathbb{N}$ ammette almeno un elemento: 0 (zero). \[ 0 \in \mathbb{N} \]
+    \item Esiste una funzione iniettiva avente $\mathbb{N}$ come dominio sia come codominio.
+    \[ \exists \text{ succ: } \mathbb{N} \rightarrow \mathbb{N} \text{ iniettiva} \]
+    \item Il successivo di ogni naturale non è mai 0.
+    \[ \forall n \in \mathbb{N}, \text{succ}(n) \not = 0 \]
+    \item \textbf{Assioma di induzione:} Se $A\subseteq\mathbb{N}$ è un sottoinsieme contenente 0 e
+    per cui vale tale proprietà: per ogni naturale $n$, se $n$ appartiene
+    ad $A$, allora anche $\text{succ}(n)$ appartiene ad $A$; allora $A$
+    coincide con $\mathbb{N}$.
+    \[ [A \subseteq \mathbb{N}: 0 \in A, \quad \forall n \in \mathbb{N} \quad (n \in A \Rightarrow \text{succ}(n) \in A)]  \Longrightarrow  A = \mathbb{N} \]
+\end{enumerate}
+\end{tcolorbox}
+
+L'assioma di induzione costituisce il principio fondante di
+una delle tecniche di dimostrazione più potenti della matematica:
+la dimostrazione per induzione. Questa costituirà infatti la
+logica di dimostrazione maggiormente sfruttata in questo corso.
+
+
+\section{Il principio di induzione di prima forma}
+\begin{tcolorbox}[title=Prima forma dell'induzione (A)]
+Sia $\{P(n)\}_{n \in \mathbb{N}}$ una famiglia di proposizioni
+indicizzata su $\mathbb{N}$. Supposto che:
+\begin{enumerate}
+    \item $P(0)$ sia vera
+    \item $\forall n \in \mathbb{N} \quad P(n) \Longrightarrow P(n+1)$
+\end{enumerate}
+Allora $P(n)$ è vera $\forall n \in \mathbb{N}$.
+$\\\\$
+\emph{\textbf{Dimostrazione:}} Sia $A = \{n | P(n)\}$. Per la (1) si ha
+che $0 \in A$. Se $n \in A$ allora vale $P(n)$, quindi $P(n+1)$
+vale per la (2), ma allora $n+1 \in A$, quindi per l'assioma di
+induzione $A = \mathbb{N}$.
+\cvd
+\end{tcolorbox}
+
+Spesso si desidera limitare la dimostrazione di certe proposizioni
+ad un sottoinsieme. Per questo esiste una formulazione alternativa
+del principio di induzione, utile a tale scopo.
+
+\begin{tcolorbox}[title=Prima forma dell'induzione (B)]
+Sia $h \in \mathbb{N}$ e sia $\{P(n)\}_{n \geq h}$ una famiglia
+di proposizioni indicizzata su su $n \geq h$. Supposto che:
+\begin{enumerate}
+    \item $P(h)$ sia vera
+    \item $\forall n \geq h \quad P(n) \Longrightarrow P(n+1)$
+\end{enumerate}
+Allora $P(n)$ è vera $\forall n \geq h$.
+$\\\\$
+\textbf{\emph{Dimostrazione:}} Sia $A = \{n \geq h| P(n)\}$.
+
+$n=h$ (base dell'induzione) $n=h \Longrightarrow n \in A \because \text{ip. (1)}$.
+
+$\forall n \geq h, n \Rightarrow n+1$ (passo induttivo) Supposto che qualche $n \in A$,
+con $n \geq h$ allora per (2) si ha $P(n) \Rightarrow P(n+1)$, ma allora $n+1 \in A$.
+Per l'assioma di induzione, $P(n)$ vera $\forall n \geq h$.
+\cvd
+\end{tcolorbox}
+
+Come per molti altri teoremi che vedremo più avanti, le dimostrazioni del
+principio di induzione forniscono uno schema generale per mostrare la validità
+di proposizioni indicizzate sui naturali.
+
+
+
+
+\section{Il teorema di ricorsione}
+Con i soli assiomi di Peano non si può fare molta strada: non
+definiscono operazioni come somma e prodotto e nemmeno relazioni
+d'ordine—poter stabilire se un numero è più grande di un altro—
+sugli elementi di $\mathbb{N}$. Per poter procedere, è necessario
+citare l'assioma di ricorsione—probabilmente il più complesso del
+corso, ma sul quale si fondano operazioni scontate come la somma
+di numeri naturali.
+
+\begin{tcolorbox}[title=Teorema di ricorsione]
+Sia $X$ un insieme, $h:\mathbb{N}\times X\to X$ una funzione
+e $c\in X$. Esiste un'unica funzione $f:\mathbb{N}\to X$ tale
+che
+\begin{align*}
+    f(0) &= c\\
+    f(\text{succ}(n)) &= h(n,f(n)) \quad \forall n \in\mathbb{N}
+\end{align*}
+
+\textit{\textbf{Dimostrazione:}} non vuoi vedere due pagine di dimostrazione
+\end{tcolorbox}
+
+
+\section{Operazioni fondamentali sui naturali}
+Enunciato il teorema di ricorsione, definiamo la somma e il prodotto
+in $\mathbb{N}$.
+\begin{tcolorbox}[colback=yellow!30, colframe=yellow!30!black, title={Somma in $\mathbb{N}$}]
+Dato $n\in\mathbb{N}$ si definisce + la funzione $m\mapsto n+m$ ricorsivamente
+nel seguente modo:
+\begin{align*}
+    n + 0 &= n\\
+    n + \text{succ}(m) &= \text{succ}(n + m)
+\end{align*}
+\end{tcolorbox}
+
+Ponendo $\text{succ}(0) = 1$, grazie al teorema di ricorsione si ottiene
+\[ \text{succ}(n) = \text{succ}(n + 0) = n + \text{succ}(0) = n + 1 \]
+D'ora in poi verrà utilizzata questa scrittura, più naturale e familiare,
+per indicare il successivo del numero $n$.
+
+\begin{tcolorbox}[colback=yellow!30, colframe=yellow!30!black, title={Prodotto in $\mathbb{N}$}]
+Dato $n\in\mathbb{N}$ si definisce il prodotto $m\mapsto nm$
+\begin{align*}
+    n0 &= 0\\
+    n(m+1) &= nm + n
+\end{align*}
+\end{tcolorbox}
+
+\begin{osservaz}
+Queste definizioni prevedono solo la
+somma e il prodotto a sinistra, ma si può mostrare che vale
+la \textit{commutatività}, oltre all'associatività e alla
+proprietà distributiva.
+\end{osservaz}
+
+
+\section{Insiemi ordinati}
+Definita la somma, possiamo tramite essa formalizzare
+l'ordinamento dei numeri naturali.
+
+\begin{tcolorbox}[colback=yellow!30, colframe=yellow!30!black, title={Ordinamento in $\mathbb{N}$}]
+Siano $n,m\in\mathbb{N}$. Diremo che $n$ è \textit{minore o guale} a $m$
+scrivendo
+\[ n\leq m \Longleftrightarrow \exists k\in\mathbb{N}: m = n+k \]
+\end{tcolorbox}
+L'ordinamento sui naturali $\leq$ può essere visto come sottoinsieme
+di $\mathbb{N}\times\mathbb{N}$, cioè \[ \leq \quad=\quad \{(n,m)\in\mathbb{N}\times\mathbb{N}|\exists k\in\mathbb{N}:m=n+k\} \]
+e dunque $\leq$ è una relazione sui naturali. Infatti $n\leq m$ ha
+lo stesso significato di $(n,m)\in\leq$, seguendo la definizione
+insiemistica. Valgono poi le seguenti proprietà
+(dimostrabili) $\forall n,m,k\in\mathbb{N}$:
+\begin{enumerate}
+\item $n\leq n$
+\item $n\leq m, m\leq n \Longrightarrow n = m$
+\item $n\leq m, m\leq k \Longrightarrow n \leq k$
+\item $n\leq m \text{ o } m\leq n$
+\end{enumerate}
+
+In generale, un ordine degli oggetti può essere stabilito su
+quasi tutti gli insiemi. Infatti il linguaggio insiemistico
+descrive le regole per tale costruzione estendendole ad un
+generico insieme, come si vede nella prossima definizione.
+L'ordinamento dei numeri può sembrare qualcosa di totalmente
+naturale, ma in realtà e in generale si tratta solo di una
+convenzione. In informatica, ad esempio, esiste una relazione
+d'ordine sulle stringhe e i singoli caratteri, che si basa
+sull'ordine alfabetico di lettere e parole. Nulla vieta di
+stabilire ordinamenti su colori o strumenti musicali. Basta
+``inventarsi" una relazione sotto forma di proposizione (possibilmente
+formale e non ambigua) come ``$x$ viene prima (o con la stessa
+priorità) di $y$". Ma come vedremo è necessario stabilire almeno 3 regole
+affinche una relazione d'ordine su un certo insieme sia considerabile tale:
+\begin{enumerate}
+    \item Ogni elemento deve poter essere confrontabile con sé stesso: $x$ viene prima o con la stessa priorità di sé stessp.
+    \item Se un elemento è in relazione con un altro, che è in relazione col primo, allora questi elementi sono uguali: se $x$ viene prima o con uguale priorità di $y$ e $y$ viene prima o con uguale priorità di $x$, allora $x = y$.
+    \item Se un elemento è in relazione con un altro, che è in relazione con un terzo, allora il primo è in relazione con il terzo: se $x$ viene prima di $y$ e $y$ viene prima di $z$, allora $x$ viene prima di $z$.
+\end{enumerate}
+
+\begin{tcolorbox}[colback=yellow!30, colframe=yellow!30!black, title={Relazione d'ordine parziale e totale}]
+Sia $X$ un insieme e $\preceq$ una relazione binaria su
+$X$. $\preceq$ si dice un ordinamento parziale, o relazione
+d'ordine parziale, se valgono se seguenti proprietà:
+\begin{enumerate}
+    \item \textbf{Riflessiva:} $\forall x\in X \quad x\preceq x$
+    \item \textbf{Antisimmetrica:} $\forall x,y\in X \quad x\preceq y, y\preceq x \Longrightarrow x = y$
+    \item \textbf{Transitiva:} $\forall x,y,z\in X \quad x\preceq y, y\preceq z \Longrightarrow x\preceq z$
+\end{enumerate}
+Un ordinamento parziale si dice totale se in più vale la \textbf{tricotomia}
+\[ \forall x,y\in X \quad x\preceq y \text{ o } y\preceq x \]
+\end{tcolorbox}
+Una coppia $(X,\preceq)$ si dice \textit{insieme parzialmente o totalmente
+ordinato}.
+I simboli (equivalenti) $<,\prec$ indicano l'\textit{ordinamento stretto}, ossia
+$x\prec y, x\not=y$. La proprietà di tricotomia può essere riformulata
+in termini di ordinamento stretto scrivendo
+\[ \forall x,y\in X \text{ vale una e una sola tra } x\prec y \text{ o } x=y \text{ o } y\prec x \]
+Introdotto questo nuovo linguaggio, si può allora affermare che
+$(\mathbb{N},\leq)$ è un insieme \textit{totalmente} ordinato.
+
+L'ordinamento totale è forse la relazione d'ordine con cui si ha a che
+fare più spesso nella vita: i numeri naturali ne sono una dimostrazione
+lampante. Ma quindi quando si incontrano relazioni d'ordine \textit{parziali}?
+Ma innanzitutto, cosa caspita significa essere una relazione d'ordine totale? Intuitivamente,
+una relazione d'ordine totale definita su uncerto insieme permette di
+confrontare \textit{sempre} due elementi \textit{qualsiasi} di
+quell'insieme. Cioè, se $\mathcal{R}$ è una generica relazione, ad esempio
+``è alfabeticamente minore di'' impiegata su un insieme di parole $W$,
+il simbolo $x\mathcal{R}y$ ha sempre significato $\forall x,y\in W$.
+
+Un esempio di relazione d'ordine parziale è invece il seguente:
+\[ \mathcal{R} = \text{``È antenato o identico di''} \]
+definito sull'insieme degli esseri umani. È facile verificare che
+valgono le proprietà (1), (2) e (3) mostrate precedentemente, ma
+non vale la tricotomia: non è vero che \textit{per ogni} essere
+umano è possibile stabilire se uno è antenato o identico all'altro.
+Due fratelli distinti, infatti, non possono essere confrontati con questa
+relazione (si ricorda che si è supposto che l'insieme è quello di tutti
+gli esseri umani e che la relazione deve valere per tutte le coppie
+possibili di elementi; da qui il significato intuitivo del termine
+\textit{totale}).
+
+Se il lettore insaziabile desidera una prova dell'utilità di queste
+nozioni in ambito informatico, la struttura dati conosciuta come
+\textit{heap} definisce un ordinamento parziale sui suoi elementi.
+Maggiori informazioni sono disponibili nel corso di \textit{Algoritmi
+e Strutture Dati} del famigerato Alberto Montresus\footnote{Personalità
+influente presso l'Università di Trento conosciuta anche come Montresor,
+Montresorus e altri pseudonimi.}
+
+\section{Insiemi finiti: il lemma dei cassetti}
+Forniamo ora una definizione-notazione usata frequentemente in
+questo corso: dato un numero naturale $n\in\mathbb{N}$ denotiamo
+$I_n = \{0,1,...,n-1\}$. In particolare $I_0 = \varnothing$.
+
+\begin{tcolorbox}[colback=yellow!30, colframe=yellow!30!black, title={Insieme finito}]
+Un insieme $X$ si dice finito se esiste un naturale $n$ tale che
+$X$ è equipotente a $I_n$. Un insieme è infinito se non è finito.
+\[ X \text{ finito} \Longleftrightarrow \exists n\in\mathbb{N}: X\sim I_n \]
+\end{tcolorbox}
+
+
+\begin{tcolorbox}[enhanced, breakable, title={Lemma dei cassetti}]
+Siano $X,Y$ due insiemi aventi rispettivamente $X \sim I_n$ e $Y \sim I_m$
+con $n < m$. Allora ogni applicazione $f:Y \to X$ non è iniettiva.
+$\\\\$
+\textit{\textbf{Dimostrazione:}} Si procede per induzione su $n \in
+\mathbb{N}$. Se $n=0$ allora $X=\varnothing$ e $Y\not = \varnothing$,
+quindi l'insieme $X^Y$ delle applicazioni $Y\to X$ è vuoto e pertanto
+non c'è nulla da dimostrare (dal falso segue ogni cosa).
+
+Supponiamo che la tesi sia vera per $n$ e proviamola per $n+1$. Sia
+$X \sim I_{n+1}$ e sia $Y \sim I_m$ con $m > n+1$ e supponiamo per
+assurdo che l'applicazione $f:Y\to X$ sia iniettiva. Per definizione
+esiste una bigezione $g:I_{n+1} \to X$; poniamo $x_n = g(n)$ e
+$X' = X-\{x_n\}$. Chiaramente $X'$ è in bigezione con $I_n$. Si
+presentano due casi:
+\begin{align*}
+    f^{-1}(x_n) = \varnothing      &\quad (\text{i.e. }\forall y \in Y: f(y) \not = x_n)\\
+    f^{-1}(x_n) \not = \varnothing &\quad (\text{i.e. }\exists y \in Y: f(y) = x_n)
+\end{align*}
+Nel primo caso, $f(y)\subseteq X'$ e quindi $f:Y\to X'$ sarebbe
+un'applicazione iniettiva da un insieme equipotente a $I_m$ in
+un insieme equipotente a $I_n$; dato che $m>n+1>n$ questo è assurdo
+per ipotesi di induzione.
+Nel secondo caso, sia $y\in Y$ tale che $f(y)=x_n$ e sia $Y'=Y-\{y\}$.
+Dato che $f$ è iniettiva, $f(Y') \subseteq X'$ e quindi $f|_{Y'}:
+Y'\to X'$ è un'applicazione iniettiva. Dato che $Y'\sim I_{m-1}$,
+$X'\sim I_n$ e $m-1>n$, ciò è assurdo per ipotesi di induzione.
+\cvd
+\end{tcolorbox}
+
+Il lemma dei cassetti prende il nome da un modo intuitivo di interpretarlo:
+se possiedo un certo numero di oggetti da disporre in un certo numero di
+cassetti, più piccolo di quello degli oggetti, allora sicuramente qualche
+cassetto conterrà più di un oggetto.
+In informatica questo concetto, seppur banale, assume un'importanza da non
+sottovalutare: se, in una funzione, si conoscono perfettamente tutti i possibili output e
+tutti i possibili input e se questi sono maggiori del numero di output,
+allora, per il lemma dei cassetti, almeno un output sarà condiviso da più
+input. Ovvero, due o più input produrranno lo stesso output.
+
+\begin{osservaz}
+Qualora dominio e codominio abbiano lo stesso numero di elementi,
+è possibile per una tale applicazione essere bigettiva, semplicemente
+mostrando la sua iniettività. Di fatto il lemma dei cassetti può essere
+riformulato come segue: \emph{se n oggetti vengono distribuiti in n posti
+cosicché ogni posto non riceva più di un oggetto, allora ogni posto
+conterrà uno e un solo oggetto}. Nel teorema di Fermat-Eulero
+si farà riferimento a questa formulazione del
+lemma dei cassetti.
+\end{osservaz}
+
+Dal lemma dei cassetti seguono corollari e definizioni importanti
+relativi alle proprietà degli insiemi finiti.
+\begin{tcolorbox}[colback=green!30, colframe=green!30!black, title={Equipotenza tra insiemi finiti}]
+Dati $n,m\in\mathbb{N}, n\not=m$ e $X,Y$ insiemi finiti tali che $|X|=|I_n|$ e $|Y|=|I_m|$,
+allora $X$ e $Y$ non sono equipotenti.
+
+In particolare vale \[ |X|=|I_n|,|X|=|I_m| \Longrightarrow n=m \]
+insieme a \[ X\sim I_n,Y\sim I_m \Longrightarrow (X\sim Y \Leftrightarrow n = m) \]
+\end{tcolorbox}
+Da quest'utlimo corollario si può definire la cardinalità degli insiemi
+finiti.
+
+\begin{tcolorbox}[colback=yellow!30, colframe=yellow!30!black, title={Cardinalità di un insieme finito}]
+Sia $X$ un insieme finito. Si dice cardinalità di $X$ l'unico numero
+naturale $n$ tale che $|X|=|I_n|$. Tale numero si denota con $|X|$.
+\end{tcolorbox}
+
+Riproponiamo la condizione di equipotenza, in particolare per quanto
+riguarda gli insiemi finiti ed introducendo il linguaggio della cardinalità.
+
+\begin{tcolorbox}[title={Condizione di equipotenza espressa in termini di cardinalità}]
+Dati $X,Y$ insiemi finiti vale
+\[ X\sim Y \Longleftrightarrow |X|=|Y| \]
+\textit{\textbf{Dimostrazione:}} $|X|=|Y|\Longrightarrow \exists n\in\mathbb{N}:
+X\sim I_n, Y\sim I_n\Longrightarrow X\sim Y$ per transitività dell'equipotenza.
+Viceversa se $X\sim Y$ allora essi hanno la stessa cardinalità, per il
+corollario precedente.
+\end{tcolorbox}
+
+\begin{tcolorbox}[title={Cardinalità di sottoinsiemi finiti}]
+Sia $X$ un insieme finito e $Y\subseteq X$. Allora anche
+$Y$ è finito e $|Y|\leq|X|$. Se $Y\subsetneqq X$, allora
+$|Y|<|X|$.
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=green!30, colframe=green!30!black, title={Equipotenza tra insieme finito e sottoinsieme}]
+Un insieme finito non è equipotente ad alcun suo sottinsieme proprio,
+cioè non esiste alcuna bigezione tra $X$ e un qualsivoglia $X'\subsetneqq X$.
+\end{tcolorbox}
+
+\begin{osservaz}
+Segue in particolare che $\mathbb{N}$ è
+infinito. Per gli assiomi di Peano, si può considerare
+l'applicazione $n\mapsto \text{succ}(n)$; sapendo che 0 non
+possiede alcun predecessore, $\text{succ}$ è una bigezione
+tra $\mathbb{N}$ e il suo sottoinsieme proprio $\mathbb{N}\setminus\{0\}$.
+$\mathbb{N}$ dunque non soddisfa il corollario precedente.
+\end{osservaz}
+
+
+
+
+
+\section{\underline{Buon ordinamento}}
+\begin{tcolorbox}[colback=yellow!30, colframe=yellow!30!black, title=Minimo]
+Sia $X$ un insieme e sia $\leq$ un ordinamento su $X$. Sia $A \subseteq X$, diremo
+che $z \in A$ è un minimo di $A$ se per ogni $x \in A$ si ha che $z \leq x$.
+\[ z = \min A \Longleftrightarrow z \leq x \quad \forall x \in A \]
+\end{tcolorbox}
+
+\begin{osservaz}
+Non avendo elementi, l'insieme vuoto non ammette minimo.
+\end{osservaz}
+
+\begin{tcolorbox}[colback=yellow!30, colframe=yellow!30!black, title=Insieme ben ordinato]
+Un ordinamento totale su un insieme $X$ si dice buon ordinamento se ogni sottoinsieme
+non vuoto di $X$ ammette minimo.
+\[ (X,\leq) \text{ ben ordinato } \Longleftrightarrow \exists \min A \quad \forall A \subseteq X, A \not = \varnothing \]
+\end{tcolorbox}
+
+\begin{tcolorbox}[title={Buon ordinamento di $\mathbb{N}$}]
+L'ordinamenti dei numeri naturali è un buon ordinamento.
+\[ (\mathbb{N},\leq) \text{ ben ordinato} \]
+\emph{\textbf{Dimostrazione:}} Sia $A \subseteq \mathbb{N}$ che non
+ammette minimo e mostriamo che $A = \varnothing$.
+Sia $B = \mathbb{N}\setminus A$ il complementare di $A$. Si procede per induzione su
+$n \in \mathbb{N}$ considerando la proposizione:
+\[ P(n) := \left(\{0,1,...,n\} \subseteq B\right) \]
+$n=0$ (base dell'induzione) Si osservi che $0 = \min\mathbb{N}$, dunque
+$0 \not \in A$, altrimenti sarebbe il suo minimo,
+allora $0 \in B$ e di conseguenza $\{0\} \subseteq B$.
+
+$n\geq0, n\Longrightarrow n+1$ (passo induttivo)
+Supponiamo che $\{0,...,n\} \subseteq B$ per qualche $n\geq0$ (ipotesi
+induttiva). Allora
+$0,...,n \not \in A$ per ipotesi induttiva, quindi $n+1 \not \in A$,
+altrimenti sarebbe il suo minimo. Quindi $n+1 \in B$ e pertanto
+$\{0,...,n,n+1\} \subseteq B$. Allora $B = \mathbb{N}$, quindi
+$A = \varnothing$.
+\cvd
+\end{tcolorbox}
+
+Esistono insiemi ordinati ma non ben ordinati? La risposta è affermativa:
+\begin{itemize}
+    \item $\mathbb{Z}$: il sottoinsieme $M\subseteq \mathbb{Z}$ dei numeri negativi non ha minimo.
+    \item $\mathbb{R}$: l'intervallo dei reali $(0,1)$ non ammette minimo.
+\end{itemize}
+
+
+
+
+\section{\underline{Il principio di induzione di seconda forma}}
+\begin{tcolorbox}[title={Principio di induzione di seconda forma}]
+Sia $\{P(n)\}_{n \in \mathbb{N}}$ una famiglia di proposizioni
+indicizzate su $\mathbb{N}$ e si supponga che:
+\begin{enumerate}
+    \item $P(0)$ sia vera
+    \item $\forall n > 0 \quad (P(k) \text{ vera } \forall k < n) \Longrightarrow P(n)$
+\end{enumerate}
+Allora $P(n)$ è vera $\forall n \in \mathbb{N}$.
+$\\\\$
+\emph{\textbf{Dimostrazione:}} Sia $A := \{n \in \mathbb{N} | P(n) \text{ falsa} \}$,
+e si supponga per assurdo che $A \not = \varnothing$. Allora per
+la proprietà di buo ordinamento di $\mathbb{N}$, $A$ ammette minimo $m$
+(essendo $A\subseteq\mathbb{N}$ non vuoto). Vale:
+\[ m := \min A \Longrightarrow m \in A \Longrightarrow P(m) \text{ falsa } \Longrightarrow m \not = 0 \]
+che segue da (1).
+
+Se $k \in \mathbb{N}: 0 \leq k < m = \min A$ allora $k \not \in A$. Ma
+allora $P(k)$ è vera. Per (2), segue che $P(m)$ è vera, ma si ottiene
+così una contraddizione. Deve dunque essere necessariamente $A = \varnothing$,
+ovvero $P(n)$ vera $\forall n \in \mathbb{N}$.
+\cvd
+\end{tcolorbox}

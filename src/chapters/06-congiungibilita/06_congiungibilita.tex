@@ -1,0 +1,75 @@
+\chptr{Congiungibilità}
+\begin{tcolorbox}[colback=yellow!30, colframe=yellow!30!black, title={Passeggiate, cammini, cicli}]
+Sia $G=(V,E)$ un grafo. Una successione finita ordinata $(v_0,v_1,...,v_n)$
+di vertici di $G$ (cioè $v_0,v_1,...,v_n \in V$) si dice:
+\begin{itemize}
+\item \textbf{Passeggiata in $G$} se vale: $n=0$ oppure $n\geq 1$ e $\{v_i,v_{i+1}\}\in E$ $\forall i \in \{0,...,n-1\}$.
+\item \textbf{Cammino in $G$} se è una passeggiata in $G$ e $v_i \not = v_j$ $\forall i,j \in \{0,...,n\}, i\not = j$.
+\item \textbf{Ciclo in $G$} se è una passeggiata in $G$ e $n \geq 3, v_n=v_0, (v_0,...,v_{n-1})$ è un cammino in $G$.
+\end{itemize}
+\end{tcolorbox}
+
+
+\section{\underline{Congiungibilità per cammini e passeggiate}}
+\begin{tcolorbox}[title={Equivalenza tra congiungibilità per cammini e passeggiate}]
+Due vertici $v,w$ sono congiungibili mediante un cammino se e solo se lo
+sono mediante una passeggiata.
+$\\\\$
+\textit{\textbf{Dimostrazione:}} Se $v$ è congiungibile a $w$ in $G$ per
+cammini, allora lo è anche per passeggiate, perché un cammino è anche una
+passeggiata.
+
+Supponiamo viceversa che $v$ sia congiungibile con $w$ in $G$ tramite
+una certa passeggiata $P$. Osserviamo che, se $v=w$, allora è
+sufficiente considerare il cammino banale $(v)$. Supponiamo $v \not = w$.
+Consideriamo il seguente insieme:
+\[ \mathcal{P}:=\{Q|Q \text{ è una passeggiata in } G \text{ da } v \text{ a } w\} \]
+Per ipotesi $P \in \mathcal{P} \Longrightarrow \mathcal{P} \not = \varnothing$.
+Definiamo il seguente insieme \textit{delle energie} degli elementi di
+$\mathcal{P}$:
+\[ \mathcal{A}:=\{l(Q) \in \mathbb{N}| Q \in \mathcal{P}\}\subseteq\mathbb{N} \]
+dove $l(Q)="\text{numero di lati percorsi durante la passeggiata } Q"$.
+Ma $l(P) \in \mathcal{A} \Longrightarrow \mathcal{A} \not = \varnothing$.
+Grazie al teorema del buon ordinamento dei naturali,
+\[\exists \min\mathcal{A}=:m \quad \Longrightarrow \quad \exists P_0 \in \mathcal{P}: l(P_0) = m \leq l(Q) \quad \forall Q \in \mathcal{P}\]
+Dimostriamo che $P_0 = (v_0,...,v_n), v_0=v, v_n=w$ è un cammino in $G$.
+Supponiamo per assurdo che esso non lo sia. Allora (ricordando però che
+$v\not = w$) $\exists i,j \in \{0,...,n\}: i\not = j, v_i=v_j$ e possiamo
+supporre $i<j$ a meno di scambio. Si consideri allora $P_1=(v_0,..., v_i, v_{j+1},...,v_n)$,
+che è una passeggiata: dato che $P_0$ è una passeggiata, $\{v_h,v_{h+1}\} \in E(G)$
+per ogni $0\leq h<n$, e dato che $v_i=v_j$, allora $\{v_i,v_{j+1}\}=\{v_j,v_{j+1}\}
+\in E(G)$. $P_1$ congiunge $v$ a $w$ (sappiamo che $v_0=v, v_n=w$), quindi
+$P_1\in\mathcal{P}$.
+Ma allora \[ l(P_1)=l(P_0)-(j-i)=m-(j-i)<m=\min\mathcal{A} \]
+che contraddice la condizione di minimalità imposta su $P_0$. Segue che
+$P_0$ è un cammino in $G$, quindi $v,w$ sono congiungibili anche
+per cammino in $G$.
+\cvd
+\end{tcolorbox}
+
+
+\section{\underline{La relazione di congiungibilità}}
+\begin{tcolorbox}[title=La congiungibilità tra vertici è una relazione di equivalenza]
+Sia $G=(V,E)$ un grafo. Definiamo la relazione biunivoca $\sim$ sull'insieme
+$V$ dei vertici ponendo:
+\[ v \sim w \text{ se } v \text{ è congiungibile con } w \text{ in } G \]
+La relazione $\sim$ è una relazione di equivalenza su $V$.
+$\\\\$
+\textit{\textbf{Dimostrazione:}}
+Sia $G=(V,E)$ un grafo e prendiamo
+$v,v',v'' \in V$, $\sim :=$ relazione di congiungibilità.
+\begin{enumerate}
+    \item \textbf{Riflessività:} $\forall v\in V$ è sufficiente considerare
+    la passeggiata banale $B=(v)$, dunque $v\sim v$.
+    \item \textbf{Simmetricità:} $v \sim v' \Longrightarrow \exists
+    P=(v_0=v,v_1,...,v_{n-1},v_n=v')$ passeggiata in $G$. Basta dunque
+    considerare la passeggiata "inversa" $P'=(v_n=v',v_{n-1},...,v_0=v) \Longrightarrow
+    v'\sim v$.
+    \item \textbf{Transitività:} $v\sim v', v'\sim v'' \Longrightarrow
+    \exists P_1=(v_0=v,...,v_n=v'), P_2=(u_0,=v',...,u_m=v'')$. Si considera
+    dunque $Q=(v_0=v,...,v_n=v', u_1,...,u_m=v'')$, che è una passeggiata
+    perché tutti gli elementi consecutivi di $Q$ rappresentano vertici che
+    sono adiacenti nelle passeggiate $P_1,P_2 \Longrightarrow v\sim v''$.
+\end{enumerate}
+\cvd
+\end{tcolorbox}
