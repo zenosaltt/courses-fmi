@@ -5,6 +5,7 @@ Ai fini del corso, mostriamo solo alcuni assiomi e concetti primitivi,
 appartenenti alla teoria degli insiemi, utili a comprendere ciò che
 verrà trattato in seguito.
 
+\vspace*{10pt}
 \begin{tcolorbox}[colback = yellow!30, colframe = yellow!30!black, title = {Elemento, insieme, appartenenza}]
 Intenderemo \textit{primitivi} i concetti seguenti:
 \begin{itemize}
@@ -24,7 +25,7 @@ Un insieme può a sua volta essere un elemento.
 
 \subsection*{Appartenenza e paradosso di Russell}
 Anche se la richiesta espressa dalla condizioine di appartenenza può sembrare
-scontata, in realtà può essere fonte di problemi. Consideriamo l'oggetto
+scontata, in realtà essa può essere fonte di problemi. Consideriamo l'oggetto
 \[ R = \{x|x\not\in x\} \]
 Per capire se $R$ è un insieme, è necessario passare in rassegna ogni oggetto
 $x$ e stabilire se esso appartiene o meno a $R$ (affinché $x\in R$, deve valere
@@ -43,6 +44,7 @@ un insieme. Un altro esempio di oggetto non classificabile come insieme,
 secondo le definizioni presentate finora, è l'\textit{insieme universo} $\mathcal{U}$,
 trattato più avanti.
 
+\vspace*{10pt}
 \begin{tcolorbox}[colback=yellow!30, colframe=yellow!30!black, title={Assioma di Estensionalità}]
 Due insiemi sono uguali se possiedono gli stessi elementi.
 \[ A = B \Longleftrightarrow (\forall x,x\in A \Leftrightarrow x \in B) \]
@@ -239,3 +241,53 @@ In una funzione surgettiva, l'immagine coincide con il codominio.
 
 
 \section{Equipotenza di insiemi}
+\begin{tcolorbox}[enhanced, breakable, colback=yellow!30, colframe=yellow!30!black, title={Composizione}]
+Siano $X$ e $Y$ due insiemi. Diremo che $X$ e $Y$ sono \textit{equipotenti}
+se esiste una bigezione $f:X\to Y$. Questa proprietà verrà denotata con
+\[ X\sim Y \]
+letto anche come ``$X$ e $Y$ hanno la stessa cardinalità''.
+\end{tcolorbox}
+
+Si può dimostrare che l'equipotenza tra insiemi è una relazioe di equivalenza.
+Dati $X,Y,Z$ insiemi, valgono infatti:
+\begin{enumerate}
+    \item $X\sim X$
+    \item $X\sim Y \Rightarrow Y \sim X$
+    \item $X\sim Y, Y\sim Z \Rightarrow X \sim Z$
+\end{enumerate}
+\textbf{\textit{Dimostrazione:}} (1) l'identità è una bigezione; (2)
+se $f$ è una bigezione, allora $f^{-1}$ è una bigezione; (3) composizione
+di bigezioni è una bigezione.
+\cvd
+
+\begin{osservaz}
+Non abbiamo ancora dato alcun significato preciso al termine
+\textit{cardinalità} in relazione ad un insieme. Basti sapere che
+è possibile definire una classe di particolari insiemi detti
+\textbf{cardinali}, che godono delle seguenti proprietà:
+\begin{itemize}
+    \item Ogni insieme $X$ è equipotente ad uno ed un solo cardinale
+    (solitamente denotato con $|X|$).
+
+    \item Due cardinali diversi non sono equipotenti tra loro.
+\end{itemize}
+Ci limiteremo solamente alla definizione di cardinalità per gli
+insiemi finiti, trattati più avanti. Mostriamo il seguente teorema,
+generalizzazione di un altro mostrato invece in termini di cardinalità
+nelle prossime pagine:
+\begin{tcolorbox}[title = {Equipotenza come uguaglianza tra cardinali}]
+Siano $X,Y$ due insiemi. Vale:
+\[ X\sim Y \Leftrightarrow |X| = |Y| \]
+\textit{\textbf{Dimostrazione:}} se $\kappa = |X| = |Y|$ allora esistono
+due bigezioni $f:X\to \kappa $ e $g:Y\to \kappa$. Ma allora,
+avendo osservato che $\sim$ è una relazione di equivalenza,
+vale $g^{-1}\circ f: X\to Y$ è una bigezione e quindi $X\sim Y$.
+
+Viceversa, sia $X\sim Y$ e sia $f:X\to Y$ una bigezione. Siano
+$\kappa = |X|$ e $\lambda = |Y|$; siano $g:X\to \kappa$ e $h:Y\to \lambda$
+delle bigezioni. Allora $h\circ f\circ g^{-1}:\kappa\to\lambda$ è una bigezione
+e quindi $\kappa = \lambda$.
+\cvd
+\end{tcolorbox}
+
+\end{osservaz}
