@@ -212,10 +212,180 @@ in $\mathbb{Z}$ tra $n$ e $m$:
 
 
 \section{\underline{Definizione, esistenza e unicità del MCD}}
-\section{Algoritmo di Euclide per il calcolo del MCD}
-\section{Numeri coprimi e primi}
-\section{\underline{Definizione, esistenza e unicità del mcm}}
+\begin{tcolorbox}[colback=yellow!30, colframe=yellow!30!black, title=Massimo Comun Divisore]
+Dati $n,m \in \mathbb{Z}$ non entrambi nulli e $c\in\mathbb{Z}$, si dice che
+$M = (n,m)$ è \textit{il} massimo comun divisore di $n$ e $m$ se:
+\begin{enumerate}
+    \item $M>0$
+    \item $M|n$ e $M|m$
+    \item $\forall c\in\mathbb{Z}:c|n, c|m \Longrightarrow c|M$
+\end{enumerate}
+\end{tcolorbox}
+\begin{tcolorbox}[title={Esistenza e unicità del massimo comun divisore}]
+Dati $n,m \in \mathbb{Z}$ non entrambi nulli eiste unico il loro
+massimo comun divisore: \[ n,m \in \mathbb{Z}: n \not = 0 \vee m \not = 0 \Longrightarrow \exists! M = (n,m) \]
+\emph{\textbf{Dimostrazione:}} \underbar{\emph{Esistenza:}} Si consideri l'insieme
+\[S := \{s \in \mathbb{Z}| s > 0, \exists x,y \in \mathbb{Z}: s = xn + ym\}\]
+Possiamo asserire che $S \not = \varnothing$, perché vale $nn + mm > 0$
+(si ricorda che $n,m$ non sono entrambi nulli). Poiché $S$ è un sottoinsieme non vuoto
+di $\mathbb{N}$, grazie al teorema del buon ordinamento di $\mathbb{N}$, $S$
+ammette minimo. Sia $d:= \min S = xn + ym$, per qualche $x,y\in\mathbb{Z}$ e dimostriamo che
+$d$ è il MCD. Vale $d\in S\Longrightarrow d>0$ (definizione (1)). Sia \[ c\in\mathbb{Z}:
+c|n,c|m \Longleftrightarrow \exists h,k\in\mathbb{Z}:n=kc,m=hc \Longrightarrow d=xkc+yhc=(xk+yh)c \Longrightarrow c|d \]
+(definizione (2)).  Dimostriamo che $d|n$.
+Si consideri la divisione euclidea tra $n$ e $d$: $n = qd + r$ con
+$0 \leq r < d$. Se $r > 0$, allora $r = n - qd = n - q(xn + ym) = n(1-qx) +
+m(-qy) \in S$. Ma questo è assurdo, perché $r<d$ e $d = \min S$. Quindi
+$r=0$ cioè $d|n$. Lo stesso ragionamento vale per $d|m$ (definizione (3)).
 
+\underbar{\emph{Unicità:}} Supponiamo che $M,M'$ siano due massimi comun
+divisori di $n,m$. Allora $M'|M$, perché $M|n,M|m$, essendo $M$ divisore
+comune. Ma invertendo i ruoli vale anche $M|M'$, perché anche $M$ si
+suppone essere massimo comun divisore. Per la proprietà della divisibilità,
+allora $M = \pm M'$, ma essendo entrambi i massimi comun divisori di $n$
+e $m$, per definizione $M,M'>0$, quindi $M=M'$.
+\cvd
+\end{tcolorbox}
+Dalla dimostrazione segue che, dati $n,m\in\mathbb{Z}$, esistono
+$x,y\in\mathbb{Z}$ tali che \[ (n,m) = nx + my \]
+e che gli interi che sono combinazione lineare di $n$ e $m$ sono       
+tutti e soli multipli di $(n,m)$. È altresì importante notare che:
+\begin{enumerate}
+\item La nozione di divisibilità non dipende dai segni:
+\begin{align*}
+    &n|m \Longleftrightarrow \exists k\in\mathbb{Z}:m=kn \Longleftrightarrow \exists k\in\mathbb{Z}:m=(-k)(-n) \Longleftrightarrow -n|m\\
+    &\Longleftrightarrow\\
+    &\exists k\in\mathbb{Z}:-m=(-k)n=k(-n) \Longleftrightarrow n|-m,-n|-m\\
+    &\Longleftrightarrow\\
+    &(n,m) = (-n,m) = (-n,-m) = (|n|,|m|)
+\end{align*}
+\item La definizione di massimo comun divisore non dipende dall'ordine
+di $n$ e $m$: \[ (n,m)=(m,n) \]
+\item Siano $n,m\in\mathbb{Z}$ non entrambi nulli. Allora
+\[ (n,m)=\max\{c\in\mathbb{Z}| c|n,c|m\} \]
+\item Sia $n\in\mathbb{Z}\setminus\{0\}$. Vale \[ (n,0)=|n| \]
+\end{enumerate}
+
+
+
+\section{Algoritmo di Euclide per il calcolo del MCD}
+\begin{tcolorbox}[title=Algoritmo di Euclide]
+Siano:
+\begin{enumerate}
+    \item $n,m \in \mathbb{Z}$
+    \item $n = qm + r$ la divisione euclidea di $n$ per $m$
+    \item $\mathcal{A} := \{c \in \mathbb{Z}| c|n, c|m\}$, $\mathcal{B} := \{c\in \mathbb{Z}| c|m, c|r\}$
+\end{enumerate}
+Allora $\mathcal{A} = \mathcal{B}$ e in particolare $(n,m) = (m,r)$.
+$\\\\$
+\emph{\textbf{Dimostrazione:}} mostriamo che $\mathcal{A}\subseteq\mathcal{B}$.
+Sia $c\in\mathcal{A}$. Vale:
+\[ c\in\mathcal{A} \Leftrightarrow c|n,c|m \Leftrightarrow \exists h,k\in\mathbb{Z}:n=hc,m=kc \Rightarrow r=n-qm=hc-qkc=(h-qk)c \Rightarrow c|r \Rightarrow c\in\mathcal{B} \]
+
+Mostriamo che $\mathcal{B}\subseteq\mathcal{A}$. Sia $c \in \mathcal{B}$. Vale:
+\[ c\in\mathcal{B} \Leftrightarrow c|m,c|r \Leftrightarrow \exists h,k\in\mathbb{Z}:m=hc,r=kc \Rightarrow n=qm+r=qhc+kc=(qh+k)c \Rightarrow c|n \Rightarrow c\in\mathcal{A} \]
+
+Segue che \[ \mathcal{A}\subseteq\mathcal{B},\mathcal{B}\subseteq\mathcal{A}\Longrightarrow\mathcal{A}=\mathcal{B} \]
+
+In particolare, per il teorema di esistenza e unicità del MCD e l'Osservazione
+(3) di questa sezione, segue che $(n,m) = \max \mathcal{A} = \max \mathcal{B} = (m,r)$.
+\cvd
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=red!30, colframe=red!30!black, title=Impiegare l'Algoritmo di Euclide]
+
+\end{tcolorbox}
+
+
+\section{Numeri coprimi e primi}
+\begin{tcolorbox}[colback=yellow!30, colframe=yellow!30!black, title=Numeri coprimi]
+$n,m \in \mathbb{Z}$ non entrambi nulli si dicono coprimi se vale:
+\[(n,m)=1\]
+\end{tcolorbox}
+\begin{osservaz}
+\emph{$(n,m) = 1 \Longleftrightarrow \exists x,y \in \mathbb{Z}:
+nx + my = 1$. In particolare, $(n,n+1)=1$; infatti $1 = (n+1)1 + n(-1)$.}
+\end{osservaz}
+Avendo introdotto il massimo comun divisore, è ora possibile mostrare
+una loro proprietà che permette di metterli in relazione con i
+numeri coprimi. Siano infatti $n,m\in\mathbb{Z}$ non entrambi nulli.
+Vale allora \[ \left(\frac{n}{(n,m)},\frac{m}{(n,m)}\right) = 1 \]
+ovvero, dividendo $n$ e $m$ per il loro massimo comun divisore, si ottengono
+numeri tra loro coprimi. La dimostrazione è la seguente:
+\[ d = (n,m) \Longleftrightarrow \exists x,y\in\mathbb{Z}: d = nx + my \therefore \frac{d}{d} = \frac{nx+my}{d} \Longleftrightarrow 1 = \frac{n}{d}x + \frac{m}{d}y \]
+\cvd
+
+\begin{tcolorbox}[colback=yellow!30, colframe=yellow!30!black, title=Numero primo]
+Il numero $p \geq 2$ si dice primo se i suoi unici divisori sono $\pm 1, \pm p$.
+\[ p \text{ primo} \Longleftrightarrow \nexists c\in\mathbb{Z}, c\not=\pm1, c\not=\pm p: c|p, \quad p\geq2 \]
+\end{tcolorbox}
+
+I numeri coprimi godono di alcune proprietà che verranno sfruttate
+in dimostrazioni successive. Siano $n,m,q\in\mathbb{Z}$ con $n,m$
+non entrambi nulli. Valgono:
+\begin{enumerate}
+\item $(n,m) = 1 \text{ e } n|mq \Longrightarrow n|q$
+\item $(n,m) = 1 \text{ e } n|q \text{ e } m|q \Longrightarrow nm|q$
+\end{enumerate}
+\textit{\textbf{Dimostrazione:}}
+\begin{enumerate}
+\item $(n,m)=1\Rightarrow\exists x,y\in\mathbb{Z}:(n,m)=xn+ym=1\Rightarrow q=qxn+qym\Rightarrow n|mq\Rightarrow\exists h\in\mathbb{Z}:mq=nh\Rightarrow q=qxn+ynh = n(qx+yh)\Rightarrow n|q$
+\item $n|q\Rightarrow\exists h\in\mathbb{Z}:q=nh \quad\Rightarrow\quad m|q=nh, (n,m)=1\stackrel{\text{(1)}}{\Longrightarrow} m|h \Rightarrow\exists k\in\mathbb{Z}:h=km\Rightarrow q=nh=nmk\Rightarrow nm|q$
+\end{enumerate}
+\cvd
+
+\begin{tcolorbox}[colback=green!30, colframe=green!30!black, title=Condizione alternativa di primalità]
+\[ p \text{ primo} \Longleftrightarrow \forall n,m\in\mathbb{Z}:(p|nm\Rightarrow p|n \text{ o } p|m) \]
+\end{tcolorbox}
+
+Citiamo un'ulteriore proprietà sui numeri primi, della quale si
+farà menzione più avanti.
+
+\[ n_1,n_2,\dots,n_k\in\mathbb{Z}, p \text{ primo}: p|n_1n_2\dots n_k \Longrightarrow \exists i\in\{1,\dots,k\}:p|n_i \]
+    
+
+
+\section{\underline{Definizione, esistenza e unicità del mcm}}
+\begin{tcolorbox}[colback=yellow!30, colframe=yellow!30!black, title=Minimo Comune Multiplo]
+Siano $n,m \in \mathbb{Z}$. Un numero intero $M$ è il minimo
+comune multiplo tra $n$ e $m$ se:
+\begin{enumerate}
+    \item $M \geq 0$
+    \item $n|M$ e $m|M$
+    \item $\forall c \in \mathbb{Z}: n|c, m|c \Longrightarrow M|c$
+\end{enumerate}
+Si utilizzerà il simbolo $[n,m]$ per indicare tale $M$.
+\end{tcolorbox}
+
+
+\begin{tcolorbox}[title={Esistenza e Unicità del Minimo Comune Multiplo}]
+Dati $n,m\in\mathbb{Z}$, esiste unico il loro minimo comune multiplo:
+\[ n,m \in \mathbb{Z} \Longrightarrow \exists!M=[n,m] \]
+Nota: $n = m = 0 \Longrightarrow [n,m] = 0$. Per $n,m$ non entrambi nulli:
+$[n,m] = \frac{nm}{(n,m)}$
+$\\\\$
+\emph{\textbf{Dimostrazione:}} \underline{\textit{Esistenza}}
+L'unico multiplo di 0 è sé stesso, dunque se $n=0=m$ basta porre
+$[n,m]=0$. Sia $M = \frac{nm}{(n,m)} = n'm'(n,m)$. Si è posto $n = n'(n,m)$ e
+$m = m'(n,m)$. Segue che: $M = nm' = n'm$ e allora $n|M$ e $m|M$.
+
+Sia $c\in\mathbb{Z}:n|c,m|c$. Allora $(n,m)|c$
+\footnote{Per definizione $(n,m)|n,(n,m)|m \Rightarrow \exists h,k\in\mathbb{Z}:n=h(n,m),m=k(n,m)$.
+Quindi se esiste $c$ tale che $n|c,m|c$ allora $c=in=i(n,m),c=jm=jk(n,m)$ per qualche $i,j\in\mathbb{Z}$.
+Dunque $(n,m)|c$.}.
+Ponendo $c = c'(n,m)$ segue $n'|c'$ e $m'|c'$. Essendo $(n',m')=1$ per
+proprietà dei coprimi, grazie ancora alle proprietà dei coprimi $n'm'|c'$
+quindi
+\[M = n'm'(n,m)| c'(n,m) = c\]
+
+\underline{\textit{Unicità:}} Supponiamo che $M,M' \in \mathbb{Z}$
+siano due minimi comuni multipli per $n,m$. Da (2) e (3) della
+definizione segue che $M|M'$ ma anche, scambiando i ruoli, $M'|M$.
+Ma allora, per la proprietà della divisibilità, deve essere
+$M = \pm M'$. Ma per (1) della definizione necessariamente segue
+che $M = M'$.
+\cvd
+\end{tcolorbox}
 
 \section{\underline{Teorema fondamentale dell'aritmetica}}
 \begin{tcolorbox}[enhanced, breakable, title={Teorema Fondamentale dell'Aritmetica}]
