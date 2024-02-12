@@ -51,7 +51,7 @@ $\exists q,r \in \mathbb{Z}$ tali che:
 $qm + r = n = q'm + r'$ e che, a meno di scambiare $r$ e $r'$, $0 \leq r,r' < |m|$.
 Supponiamo che $r' \geq r$, allora:
 \[ qm + r = q'm + r' \Longleftrightarrow (q - q')m = r'-r \]
-\[ \therefore \]
+\[ \therefore\footnote{Letteralmente, \textit{quindi}.} \]
 \[ |q-q'||m| = |r'-r| = r'-r < |m| \Longleftrightarrow 0 \leq |q-q'| < 1 \]
 Ma dal momento che $q,q' \in \mathbb{Z}$:
 \[
@@ -230,8 +230,11 @@ Possiamo asserire che $S \not = \varnothing$, perché vale $nn + mm > 0$
 (si ricorda che $n,m$ non sono entrambi nulli). Poiché $S$ è un sottoinsieme non vuoto
 di $\mathbb{N}$, grazie al teorema del buon ordinamento di $\mathbb{N}$, $S$
 ammette minimo. Sia $d:= \min S = xn + ym$, per qualche $x,y\in\mathbb{Z}$ e dimostriamo che
-$d$ è il MCD. Vale $d\in S\Longrightarrow d>0$ (definizione (1)). Sia \[ c\in\mathbb{Z}:
-c|n,c|m \Longleftrightarrow \exists h,k\in\mathbb{Z}:n=kc,m=hc \Longrightarrow d=xkc+yhc=(xk+yh)c \Longrightarrow c|d \]
+$d$ è il MCD. Vale $d\in S\Longrightarrow d>0$ (definizione (1)). Sia
+\begin{align*}
+    &c\in\mathbb{Z}: c|n,c|m \Leftrightarrow \exists h,k\in\mathbb{Z}:n=kc,m=hc \Rightarrow\\
+    \Rightarrow&d = xkc + yhc = (xk + yh)c \Rightarrow c|d
+\end{align*}
 (definizione (2)).  Dimostriamo che $d|n$.
 Si consideri la divisione euclidea tra $n$ e $d$: $n = qd + r$ con
 $0 \leq r < d$. Se $r > 0$, allora $r = n - qd = n - q(xn + ym) = n(1-qx) +
@@ -269,7 +272,7 @@ di $n$ e $m$: \[ (n,m)=(m,n) \]
 
 
 \section{Algoritmo di Euclide per il calcolo del MCD}
-\begin{tcolorbox}[title=Algoritmo di Euclide]
+\begin{tcolorbox}[enhanced, breakable, title = Algoritmo di Euclide]
 Siano:
 \begin{enumerate}
     \item $n,m \in \mathbb{Z}$
@@ -280,15 +283,21 @@ Allora $\mathcal{A} = \mathcal{B}$ e in particolare $(n,m) = (m,r)$.
 $\\\\$
 \emph{\textbf{Dimostrazione:}} mostriamo che $\mathcal{A}\subseteq\mathcal{B}$.
 Sia $c\in\mathcal{A}$. Vale:
-\[ c\in\mathcal{A} \Leftrightarrow c|n,c|m \Leftrightarrow \exists h,k\in\mathbb{Z}:n=hc,m=kc \Rightarrow r=n-qm=hc-qkc=(h-qk)c \Rightarrow c|r \Rightarrow c\in\mathcal{B} \]
+\begin{align*}
+    c\in\mathcal{A} \Leftrightarrow c|n,c|m \Leftrightarrow \exists h,k\in\mathbb{Z}:n=hc,m=kc \Rightarrow\\
+    \Rightarrow r=n-qm=hc-qkc=(h-qk)c \Rightarrow c|r \Rightarrow c\in\mathcal{B}
+\end{align*}
 
 Mostriamo che $\mathcal{B}\subseteq\mathcal{A}$. Sia $c \in \mathcal{B}$. Vale:
-\[ c\in\mathcal{B} \Leftrightarrow c|m,c|r \Leftrightarrow \exists h,k\in\mathbb{Z}:m=hc,r=kc \Rightarrow n=qm+r=qhc+kc=(qh+k)c \Rightarrow c|n \Rightarrow c\in\mathcal{A} \]
+\begin{align*}
+    c\in\mathcal{B} \Leftrightarrow c|m,c|r \Leftrightarrow \exists h,k\in\mathbb{Z}:m=hc,r=kc \Rightarrow\\
+    \Rightarrow n=qm+r=qhc+kc=(qh+k)c \Rightarrow c|n \Rightarrow c\in\mathcal{A}
+\end{align*}
 
 Segue che \[ \mathcal{A}\subseteq\mathcal{B},\mathcal{B}\subseteq\mathcal{A}\Longrightarrow\mathcal{A}=\mathcal{B} \]
 
 In particolare, per il teorema di esistenza e unicità del MCD e l'Osservazione
-(3) di questa sezione, segue che $(n,m) = \max \mathcal{A} = \max \mathcal{B} = (m,r)$.
+(3) di questa sezione, segue che \[ (n,m) = \max \mathcal{A} = \max \mathcal{B} = (m,r) \]
 \cvd
 \end{tcolorbox}
 
