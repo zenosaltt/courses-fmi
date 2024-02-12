@@ -198,6 +198,14 @@ totali.
 
 Denotiamo con $Y^X$ l'insieme di tutte le funzioni totali da $X$ a $Y$, cioè
 \[ Y^X = \{f\in2^{X\times Y}| \forall x\in X, \exists!y\in Y: xfy\} \]
+\begin{osservaz}
+Una funzione è interpretabile (come d'altronde accade in fisica) come
+una legge che associa ad ogni elemento del dominio $x\in\text{dom}(f)$
+uno e un solo elemento del codominio $y\in Y$ tale che $(x,y)\in f$.
+Tale elemento è più conosciuto con la notazione $f(x)$. In questo modo,
+acquista senso l'uguaglianza $y = f(x)$, che appunto corrisponde a
+$(x,y)\in f$.
+\end{osservaz}
 Se $X$ è un insieme, $\text{id}_X = \{(x_1,x_2\in X\times X| x_1=x_2)\}$ è
 una funzione, chiamata \textit{identità} di $X$ e vale \[ \text{id}_X(x)=x \quad \forall x\in X\]
 Se $f:X\to Y$ è una funzione e $A\subseteq X$, allora $f\cap(A\times Y)$
@@ -206,9 +214,26 @@ con $f|_A$. In altre parole, essa rappresenta una parte della funzione $f$,
 ristretta ad un sottoinsieme del suo dominio.
 
 \begin{tcolorbox}[colback=yellow!30, colframe=yellow!30!black, title={Composizione}]
+Siano $f:X\to Y$ e $g:Y\to Z$. Si chiama \textit{composizione}
+di $f$ e $g$ la relazione tra $X$ e $Z$ definita da
+\[ g\circ f = \{(x,z)| \exists y\in Y: y = f(x) \text{ e } z = g(x)\} \]
 \end{tcolorbox}
+\begin{osservaz}
+Grazie all'osservazione precedente, è possibile scrivere \[ g\circ f = g(f(x)) \]
+\end{osservaz}
+
 \begin{tcolorbox}[colback=yellow!30, colframe=yellow!30!black, title={Iniettività, surgettività, bigettività}]
+Una funzione $f:X\to Y$ si dice:
+\begin{itemize}
+    \item \textbf{Iniettiva} se vale: \[ \forall x_1,x_2\in X:x_1 \not= x_2 \Rightarrow f(x_1) \not = f(x_2) \]
+    \item \textbf{Surgettiva} se vale: \[ \forall y\in Y, \exists x\in X: f(x) = y \]
+    \item \textbf{Bigettiva} se è iniettiva e surgettiva.
+\end{itemize}
 \end{tcolorbox}
+
+\begin{osservaz}
+In una funzione surgettiva, l'immagine coincide con il codominio.
+\end{osservaz}
 
 
 
