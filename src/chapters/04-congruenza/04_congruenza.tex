@@ -1,8 +1,105 @@
 \chptr{Congruenza e Aritmetica Modulare}
+
 \section{Congruenza in modulo}
+\begin{tcolorbox}[colback=yellow!30, colframe=yellow!30!black, title=Congruenza in Modulo $n$]
+Fissiamo $n \in \mathbb{Z}$. Siano $a,b \in \mathbb{Z}$. Diciamo
+che $a$ è congruo a $b$ modulo $n$ e scriveremo: \[ a \equiv b \Mod{n} \]
+se vale: \[n|(a-b)\]
+\end{tcolorbox}
+
+Uno dei significati intuitivi della congruenza in modulo è il seguente:
+se $a$ è congruo a $b$ modulo $n$, allora il resto della divisione euclidea
+di $a$ per $n$ e quello della divisione euclidea di $b$ per $n$ sono uguali.
+Anche la congruenza è una relazione di equivalenza, che vale su $\mathbb{Z}$.
+Infatti essa gode delle proprietà (si fissa $n\in\mathbb{Z}$):
+\begin{enumerate}
+\item \textbf{Riflessiva:} \[ \forall a \in \mathbb{Z}, a \equiv a \Mod{n} \]
+\item \textbf{Simmetrica:} \[ \forall a,b \in \mathbb{Z}, a \equiv b \Mod{n} \Longrightarrow b \equiv a \Mod{n} \]
+\item \textbf{Transitiva:} \[\forall a,b,c \in \mathbb{Z}: a \equiv b \Mod{n} \text{ e } b \equiv c \Mod{n} \Longrightarrow a \equiv c \Mod{n} \]
+\end{enumerate}
+
 \section{Quoziente insiemistico}
+Prima di procedere con le proprietà della conguenza in modulo, estendiamo
+il discorso sulle relazioni di equivalenza introducendo nuovi concetti e
+strumenti molto astratti ma altrettanto utili nella trattazione dell'aritmetica
+modulare.
+\vspace*{10pt}
+\begin{tcolorbox}[colback=yellow!30, colframe=yellow!30!black, title=Classe di Equivalenza]
+Siano $X$ un insieme e $\mathcal{R}$ una relazione di equivalenza
+su $X$. Fissiamo $x \in X$. Definiamo la classe di equivalenza di $x$ in
+$X$ rispetto a $\mathcal{R}$ (oppure classe di $\mathcal{R}-$equivalente
+di $x$, oppure $\mathcal{R}-$classe di $x$):
+\[ [x]_\mathcal{R} := \{y \in X| y \mathcal{R} x\} \]
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=yellow!30, colframe=yellow!30!black, title=Insieme Quoziente]
+Definiremo l'insieme quoziente di $X$ modulo $\mathcal{R}$ che indicheremo
+con $X/_\mathcal{R}$ ponendo:
+\[ X/_{\mathcal{R}}:= \{[x]_\mathcal{R} \in 2^X | x \in X \} = \bigcup_{x \in X} \{[x]_\mathcal{R}\} \subseteq 2^X \]
+Ovvero l'insieme i cui elementi sono tutte e sole le $\mathcal{R}$-classi in $X$.
+\end{tcolorbox}
+
 \section{Classi di congruenza}
+
 \section{Struttura algebrica di $\mathbb{Z}/_{n\mathbb{Z}}$}
+Sia $n>0$. Siano $a,a',b,b' \in \mathbb{Z}$ tali che
+$[a]_n = [a']_n \text{ e } [b]_n = [b']_n $.
+Valgono:
+\begin{enumerate}
+\item $[a+b]_n = [a'+b']_n$, ovvero $a+b \equiv a'+b' \Mod{n}$
+\item $[a \cdot b]_n = [a' \cdot b']_n$, ovvero $a \cdot b \equiv a' \cdot b' \Mod{n}$
+\end{enumerate}
+Dalle precedenti proposizioni si possono definire le operazioni di
+somma e prodotto tra classi di resto:
+\begin{align*}
+[a]_n+[b]_n &= [a+b]_n\\
+[a]_n[b]_n &= [ab]_n
+\end{align*}
+Si può altresì dimostrare che le operazioni
+di somma e prodotto tra classi di congruenza godono delle
+stesse proprietà di quelle in $\mathbb{Z}$:
+\begin{enumerate}
+\item \textbf{Associatività:}\\$([a]_n + [b]_n) + [c]_n = [a]_n + ([b]_n + [c]_n) \quad ([a]_n[b]_n)[c]_n = [a]_n([b]_n[c]_n)$
+\item \textbf{Commutatività:} $[a]_n + [b]_n = [b]_n + [a]_n \qquad [a]_n[b]_n = [b]_n[a]_n$
+\item \textbf{Distributività:} $[a]_n([b]_n+[c]_n) = [a]_n[b]_n + [a]_n[c]_n$
+\item \textbf{Elemento neutro:} $[a]_n + [0]_n = [a]_n \qquad [a]_n[1]_n = [a]_n$
+\item \textbf{Elemento assorbente:} $[a]_n[0]_n = 0$
+\end{enumerate}
+Tuttavia è interessante notare altre proprietà peculiari:
+\begin{enumerate}
+\item \textit{Classi nulle come prodotto tra classi non nulle:} \[ 2 \cdot 3 = 0 \text{ in } \mathbb{Z}/_{6\mathbb{Z}} \]
+\item \textit{Somma fino a 0:} se $n>0$, allora: \[ \sum_{i=1}^{n} 1 = 0 \quad \text{in } \mathbb{Z}/_{n\mathbb{Z}} \]
+\end{enumerate}
+Da qui il nome intuitivo di \textit{regola dell'orologio}: la caratteristica delle classi
+di resto è proprio il fatto che i numeri che vi appartengono non si trovano su una
+retta o semiretta, bensì su una circonferenza. Fu Gauss ad illustrare per primo
+questa intuizione.
+
+Ricordate dalle elementari quelle regole di divisibilità per 3, 4, 11 e così via?
+Ecco la dimostrazione della regola di divisibilità per 3 (vogliamo mostrare che un
+naturale è divisibile per 3 se e solo se la somma delle sue cifre lo è; la
+dimostrazione delle altre regole è analoga):
+
+$\\$
+\textit{\textbf{Dimostrazione:}} sia $n$ un naturale espresso in base decimale
+le cui cifre sono $\varepsilon_0,...,\varepsilon_k$ dalla meno alla più significativa.
+Ricordando il teorema di rappresentabilità in base arbitraria dei naturali, vale:
+\begin{align*}
+    &[n]_3 = [\varepsilon_0\cdot10^0+...+\varepsilon_k\cdot10^k]_3=[\varepsilon_0]_3[10]^0_3+...+[\varepsilon_k]_3[10]^k_3=\\
+    = &[\varepsilon_0][1]^0_3+...+[\varepsilon_k][1]^k_3=[\varepsilon_0+...+\varepsilon_k]_3
+\end{align*}
+
+Scrivendo in modo compatto:
+\begin{align*}
+ &[n]_3 = \left[ \sum_{i=0}^{k}\varepsilon_i10^i \right]_3 = \sum_{i=0}^{k}[\varepsilon_i10^i]_3 = \sum_{i=0}^{k}[\varepsilon_i]_3[10]^i_3 =\\
+= &\sum_{i=0}^{k}[\varepsilon_i]_3[1]^i_3 = \sum_{i=0}^{k}[\varepsilon_i]_3 = \left[\sum_{i=0}^{k}\varepsilon_i\right]_3
+\end{align*}
+
+Dunque, esprimendo la condizione di divisibilità:
+\[ [n]_3 = [0]_3 \Longleftrightarrow \left[\sum_{i=0}^{k}\varepsilon_i\right]_3 = [0]_3 \]
+appunto, $n$ è divisibile per (o multiplo di) 3 se e solo se la somma delle sue cifre è multipla di (o divisibile per) 3.
+\cvd
+
 
 \section{\underline{Teorema cinese del resto}}
 \begin{tcolorbox}[enhanced, breakable, title={Teolema cinese del lesto}]
