@@ -128,12 +128,24 @@ Sia $G=(V,E)$ con almeno 3 vertici. Diciamo che $G$ è 2-connesso se $G-v$ è
 connesso $\forall v \in V$.
 \end{tcolorbox}
 
+Un grafo 2-connesso è semplicemente un grafo che, tolto un
+qualsiasi vertice (uno soltanto), rimane sempre connesso.
+
+Può essere desiderabile avere una rete di computer configurata
+come un grafo 2-connesso. In tal modo, infatti, ammettendo che
+i guasti e le manutenzioni affliggano sempre un solo nodo alla
+volta, è garantita la connettività ai nodi rimanenti, senza che
+un gruppo di essi rimanga isolato.
+
 \begin{tcolorbox}[colback=yellow!30, colframe=yellow!30!black, title=Grafo Hamiltoniano]
 Sia $G=(V,E)$ con almeno 3 vertici. Diciamo che $G$ è hamiltoniano se ammette
 almeno un \textbf{ciclo hamiltoniano}, ovvero un ciclo in $G$ che attraversa
 tutti i suoi vertici.
 \end{tcolorbox}
-\noindent Vale la seguente catena di implicazioni (ma non quella inversa):
+\noindent Un grafo hamiltoniano è anche 2-connesso. Questo perché,
+ammettendo un ciclo hamiltoniano, tale ciclo è di per se stesso
+2-connesso.
+Vale in generale la seguente catena di implicazioni (ma non quella inversa):
 \[ G \text{ hamiltoniano } \Longrightarrow G \text{ 2-connesso } \Longrightarrow G \text{ connesso} \]
 \begin{tcolorbox}[colback=yellow!30, colframe=yellow!30!black, title=Foglia]
 Sia $G=(V,E)$ un grafo. Un vertice $v\in V$ si dice \textbf{foglia} di $G$
@@ -158,5 +170,5 @@ foglia).
 \includegraphics[scale = 0.4]{figures/2-conn-vs-hamilton.pdf}
 \caption{Un grafo hamiltoniano (a sinistra, con un ciclo evidenziato) e un grafo 2-connesso (a destra).
 Si provi a verificare che quello a destra è effettivamente un grafo 2-connesso
-cancellando un vertice qualsiasi}
+cancellando un vertice qualsiasi (e i lati annessi)}
 \end{figure}

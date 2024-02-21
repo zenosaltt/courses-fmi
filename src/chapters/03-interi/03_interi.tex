@@ -64,8 +64,45 @@ Ma dal momento che $q,q' \in \mathbb{Z}$:
 La dimostrazione del teorema costituisce il procedimento alla base
 dell'algoritmo ricorsivo per il calcolo del quoziente e del resto
 della divisione intera.
-\begin{tcolorbox}[enhanced, breakable, colback=red!30, colframe=red!30!black, title=Algoritmo di divisione euclidea]
 
+\vspace*{10pt}
+\begin{tcolorbox}[enhanced, breakable, colback=red!30, colframe=red!30!black, title=Algoritmo di divisione euclidea con segni differenti]
+Ecco alcuni esempi di divisione euclidea:
+\begin{enumerate}
+    \item Supponiamo di voler dividere $n = 16$ per $m = 5$. Osserviamo che 5 ``ci sta 3 volte (intere) in'' 16,
+    ovvero $16 = 3\cdot 5 + 1$. Dunque, è immediato riconoscere che:
+    \[
+        \begin{cases}
+            16 = \textbf{3}\cdot 5 + 1\\
+            0 \leq \textbf{1} < |5|
+        \end{cases}
+    \]
+
+    \item Siano ora $n = 16, m = -5$. Osserviamo che $16 = 3\cdot 5 + 1 \Leftrightarrow 16 = 3\cdot(-(-5)) + 1 \Leftrightarrow 16 = (-3)\cdot(-5) + 1$.
+    In altre parole, iniziamo come se $m$ fosse positivo, per poi aggiungere i segni. Vale dunque
+    \[
+        \begin{cases}
+            16 = (\textbf{-3})\cdot(-5) + 1\\
+            0 \leq \textbf{1} < |-5|
+        \end{cases}
+    \]
+
+    \item Siano adesso $n = -16, m = 5$. Anche qui $16 = 3\cdot 5 + 1 \Leftrightarrow -(-16) = 3\cdot 5 + 1 \Leftrightarrow -16 = (-3)\cdot 5 - 1 \Leftrightarrow -16 = (-3)\cdot 5 - 1 + 5 - 5 \Leftrightarrow -16 = (-4)\cdot 5 + 4$.
+    \[
+        \begin{cases}
+            -16 = (\textbf{-4})\cdot 5 + 4\\
+            0 \leq \textbf{4} < |5|
+        \end{cases}
+    \]
+
+    \item Con $n = -16, m = -5$. Ragionando come prima, vale
+    \[
+        \begin{cases}
+            -16 = 4\cdot (-5) + 4\\
+            0\leq 4 < |-5|
+        \end{cases}
+    \]
+\end{enumerate}
 \end{tcolorbox}
 
 \section{\underline{Rappresentazione dei naturali in base} $b$}
@@ -147,7 +184,7 @@ Come per la divisione euclidea, la dimostrazione di questo teorema
 mostra un procedimento ricorsivo per il calcolo della stringa che
 rappresenta il numero naturale preso in esame data una certa base.
 
-\begin{tcolorbox}[enhanced, breakable, colback=red!30, colframe=red!30!black, title = {Algoritmo di conversione tra rappresentabilità dei naturali in basi diverse}]
+\begin{tcolorbox}[enhanced, breakable, colback=red!30, colframe=red!30!black, title = {Algoritmo di conversione tra rappresentazioni dei naturali in basi diverse}]
 
 \end{tcolorbox}
 
@@ -157,7 +194,7 @@ Finora abbiamo incontrato la nozione di \textit{divisione}
 attraverso quella euclidea, che tuttavia può dare origine
 al cosiddetto resto $r$. Un caso interessante di questo
 tipo di divisione è proprio quello in cui risulta $r = 0$:
-intuitivamente, qualora il divisore ``ci sta esattamente un certo numero
+intuitivamente, qualora il divisore ``ci sta \textit{esattamente} un certo numero
 (intero) di volte'' nel dividendo. Questo è il concetto di
 \textit{divisibilità} in $\mathbb{Z}$, di cui introduciamo ora la definizione
 formale.
