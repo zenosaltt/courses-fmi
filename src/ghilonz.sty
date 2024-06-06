@@ -1,5 +1,6 @@
 % language
 \usepackage[english, italian]{babel}
+\renewcommand\chaptername{}
 \addto\captionsitalian{\renewcommand\chaptername{}}
 
 % index setup
@@ -8,6 +9,7 @@
 % figures setup
 \usepackage{graphicx, float}
 \usepackage[font = small, labelfont = bf]{caption} % small font for caption (and bold Figure word)
+\graphicspath{{./figures}{./cover}} % dove cercare le immagini
 
 % footnotes setup
 \usepackage[bottom]{footmisc} % note appiccicate al fondo della pagina
@@ -38,3 +40,7 @@
 \newcommand{\chptr}[1]{\chapter{\textit{#1}}\noindent\rule{\textwidth}{1pt}}
 
 \usepackage{fontawesome} % for github icons
+
+\usepackage{geometry} %per personalizzare i margini
+\usepackage{afterpage} %reset comandi dopo una certa pagina
+\usepackage{indentfirst} %indenta prima riga della sezione
