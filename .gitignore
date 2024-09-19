@@ -1,9 +1,11 @@
-# ignore tex compilation product files
+# ignore every kind of compilation output but .tex and .pdf files
 
 *.aux
 *.fdb_latexmk
 *.fls
 *.log
+*.maf
+*.mtc*
 *.out
 *.synctex.gz
 *.toc
